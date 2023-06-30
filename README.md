@@ -226,7 +226,7 @@
 1. 克隆仓库并进入源码目录
 ```bash
 git clone https://github.com/OpenBMB/VisCPM.git
-cd viscpm
+cd VisCPM
 ```
 
 2. 创建conda环境
