@@ -1,0 +1,20 @@
+diffusers==0.15.0
+jieba==0.42.1
+matplotlib==3.7.1
+numpy==1.22.3
+opencv_python==4.7.0.72
+pandas==2.0.0
+Pillow==9.5.0
+psutil==5.9.0
+pydantic==1.10.7
+scipy==1.10.1
+setuptools==65.5.0
+timm==0.4.12
+torch==1.13.1
+torchscale==0.2.0
+torchvision==0.14.1
+tqdm==4.64.1
+transformers==4.28.0
+typing_extensions==4.5.0
+opendelta @ git+https://github.com/thunlp/OpenDelta.git
+cpm-live @ git+https://github.com/OpenBMB/CPM-Bee.git#egg=cpm-live&subdirectory=src
