@@ -3,10 +3,10 @@
 # VisCPM
 **Chinese-English bilingual multi-modal large model series based on CPM (Chinese Pretrained Models) basic model**
 <p align="center">
-  <a href="#VisCPM-Chat">Multimodal Conversation Model VisCPM-Chat</a> •
-  <a href="#VisCPM-Paint">Text-to-image Model VisCPM-Paint</a> •
-  <a href="#Inference">Inference</a> •
-  <a href="#License">License</a> • 
+  <a href="#-viscpm-chat">Multimodal Conversation Model VisCPM-Chat</a> •
+  <a href="#-viscpm-paint">Text-to-image Model VisCPM-Paint</a> •
+  <a href="#-inference">Inference</a> •
+  <a href="#-license">License</a> • 
   <a href="figures/wechat.md">Join Wechat Group</a>
 </p>
 

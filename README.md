@@ -3,10 +3,10 @@
 # VisCPM
 **基于CPM基础模型的中英双语多模态大模型系列**
 <p align="center">
-  <a href="## VisCPM-Chat">多模态对话模型VisCPM-Chat</a> •
-  <a href="## VisCPM-Paint">文生图模型VisCPM-Paint</a> •
-  <a href="## 使用">使用</a> •
-  <a href="## 开源协议">开源协议</a> • 
+  <a href="#-viscpm-chat">多模态对话模型VisCPM-Chat</a> •
+  <a href="#-viscpm-paint">文生图模型VisCPM-Paint</a> •
+  <a href="#-使用">使用</a> •
+  <a href="#-开源协议">开源协议</a> • 
   <a href="figures/wechat.md">加入微信讨论群</a>
 </p>
 
