@@ -222,7 +222,7 @@ Similar to `VisCPM-Chat`, we found that due to the bilingual capability of `CPM-
 1. Clone this repository and navigate to source folder
 ```bash
 git clone https://github.com/OpenBMB/VisCPM.git
-cd viscpm
+cd VisCPM
 ```
 
 2. Create conda environment
