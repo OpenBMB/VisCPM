@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from PIL import Image
-from cpm_live.tokenizers import CPMBeeTokenizer
+from VisCPM.cpm_tokenizers import CPMBeeTokenizer
 from diffusers.pipelines.stable_diffusion import StableDiffusionSafetyChecker
 from timm.models import create_model
 from torchvision.transforms.functional import to_tensor, to_pil_image
@@ -27,7 +27,7 @@ def grid_image(images: List[Image.Image]) -> Image.Image:
 
 
 class VisCPMChat(object):
-    def __init__(self, model_path, config_path='./config/cpm-bee-10b.json', image_safety_checker=False) -> None:
+    def __init__(self, model_path, config_path="./config/cpm-bee-10b.json", image_safety_checker=False) -> None:
         self.transform = utils.build_transform(is_train=False)
         self.tokenizer = CPMBeeTokenizer()
 

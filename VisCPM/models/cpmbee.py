@@ -2,10 +2,10 @@ import torch
 from typing import Optional, Tuple, List
 from typing_extensions import TypedDict
 
-from cpm_live.native_layers.embedding import EmbeddingExt
-from cpm_live.native_layers.position_embedding import BucketPositionBias
-from cpm_live.native_layers.transformer import Encoder
-from cpm_live.utils.config import Config
+from VisCPM.models.modules.embedding import EmbeddingExt
+from VisCPM.models.modules.position_embedding import BucketPositionBias
+from VisCPM.models.modules.transformer import Encoder
+from VisCPM.models.modules.config import Config
 
 
 class CPMBeeInferenceState(TypedDict):
@@ -265,7 +265,7 @@ class CPMBeeTorch(torch.nn.Module):
                 hidden_states = self.input_embedding(input, input_sub)
 
             position_bias = self.position_bias(position, present_position, segment_bucket)
-            hidden_states, present_key_values = self.encoder(
+            hidden_states, present_key_values, _ = self.encoder(
                 hidden_states,
                 attention_mask,
                 position_bias,

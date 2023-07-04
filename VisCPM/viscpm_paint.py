@@ -6,7 +6,7 @@ import PIL.Image as Image
 import collections
 import numpy as np
 import torch
-from cpm_live.tokenizers import CPMBeeTokenizer
+from VisCPM.cpm_tokenizers.bee import CPMBeeTokenizer
 from torchvision.transforms.functional import to_tensor, to_pil_image
 from torchvision.utils import make_grid
 from transformers import pipeline, AutoProcessor, AutoModel, BertForSequenceClassification, BertTokenizer
@@ -36,7 +36,7 @@ class VisCPMPaint:
         self.load_model(model_path)
         if not os.getenv('CUDA_MEM_SAVE', False):
             self.model.to(self.device)
-            
+
         if prompt_safety_checker:
             model = BertForSequenceClassification.from_pretrained('openbmb/VisCPM-Paint', subfolder='text-security-checker')
             tokenizer = BertTokenizer.from_pretrained('openbmb/VisCPM-Paint', subfolder='text-security-checker')

@@ -6,7 +6,7 @@ from timm.data.transforms import RandomResizedCropAndInterpolation
 from torchvision import transforms
 import urllib
 from tqdm import tqdm
-from cpm_live.tokenizers import CPMBeeTokenizer
+from VisCPM.cpm_tokenizers.bee import CPMBeeTokenizer
 from torch.utils.data import default_collate
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 from typing_extensions import TypedDict

@@ -3,8 +3,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from cpm_live.generation.generation_utils import BeamHypotheses, apply_repetition_penalty
-from cpm_live.tokenizers.bee import CPMBeeTokenizer
+from VisCPM.generation.generation_utils import BeamHypotheses, apply_repetition_penalty
+from VisCPM.cpm_tokenizers.bee import CPMBeeTokenizer
 from VisCPM.models import VLU_CPMBee
 from VisCPM.models.cpmbee import CPMBeeTorch
 from VisCPM.utils.utils import convert_data_to_id, pad
