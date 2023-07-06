@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import torch
 from PIL import Image
@@ -15,6 +16,7 @@ from VisCPM.models.cpmbee import CPMBeeConfig, CPMBeeTorch
 from VisCPM.utils import utils
 
 torch.set_num_threads(1)
+file_path = os.path.dirname(__file__)
 
 
 def grid_image(images: List[Image.Image]) -> Image.Image:
@@ -27,11 +29,14 @@ def grid_image(images: List[Image.Image]) -> Image.Image:
 
 
 class VisCPMChat(object):
-    def __init__(self, model_path, config_path="./config/cpm-bee-10b.json", image_safety_checker=False) -> None:
+    def __init__(self, model_path, config_path=None, image_safety_checker=False) -> None:
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.transform = utils.build_transform(is_train=False)
         self.tokenizer = CPMBeeTokenizer()
 
         self.beit3_wrapper = create_model("beit3_large_patch16_224")
+        if config_path is None:
+            config_path = os.path.join(file_path, '../config/cpm-bee-10b.json')
         self.config = CPMBeeConfig.from_json_file(config_path)
         self.cpm_model = CPMBeeTorch(self.config)
 
@@ -40,15 +45,18 @@ class VisCPMChat(object):
             vpm=self.beit3_wrapper,
             vision_dim=self.beit3_wrapper.args.encoder_embed_dim,
             query_num=64,
+            device=self.device
         )
 
         self.beam_search = VLLMCPMBeeBeamSearch(
-            self.vlu_cpmbee, self.tokenizer, self.transform
+            self.vlu_cpmbee, self.tokenizer, self.transform, device=self.device
         )
 
         vlu_state_dict = torch.load(model_path, map_location="cpu")
         self.vlu_cpmbee.load_state_dict(vlu_state_dict)
-        self.vlu_cpmbee.half().cuda()
+        self.vlu_cpmbee.half()
+        if not os.environ.get("CUDA_MEM_SAVE", False):
+            self.vlu_cpmbee.to(self.device)
         self.vlu_cpmbee.eval()
 
         if image_safety_checker:
@@ -58,7 +66,7 @@ class VisCPMChat(object):
             self.feature_extractor = CLIPImageProcessor.from_pretrained(
                 "openai/clip-vit-base-patch32"
             )  # Download image_processing_config from huggingface.co and cache.
-            self.image_safety_checker.to('cuda')
+            self.image_safety_checker.to(self.device)
         else:
             self.image_safety_checker = None
             self.feature_extractor = None
@@ -70,7 +78,7 @@ class VisCPMChat(object):
         }
 
         images, has_nsfw_concept = self.run_image_safety_checker(
-            np.asarray(image), "cuda", torch.float
+            np.asarray(image), self.device, torch.float
         )
         if has_nsfw_concept and has_nsfw_concept[0]:
             print("Content is not safe for work.")

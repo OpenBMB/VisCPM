@@ -7,6 +7,7 @@ from transformers.modeling_outputs import CausalLMOutput
 from transformers.utils import ModelOutput
 
 from VisCPM.models.cpmbee import CPMBeeTorch
+import os
 
 
 def construct_query_parameter(query_k, h_size, init_weights):
@@ -29,8 +30,9 @@ class CausalVLLMOutput(ModelOutput):
 
 
 class VLU_CPMBee(torch.nn.Module):
-    def __init__(self, llm: CPMBeeTorch, vpm, vision_dim, query_num) -> None:
+    def __init__(self, llm: CPMBeeTorch, vpm, vision_dim, query_num, device=None) -> None:
         super().__init__()
+        self.device = device
         self.vpm = vpm
         self.llm = llm
 
@@ -52,12 +54,29 @@ class VLU_CPMBee(torch.nn.Module):
         )
 
     def get_vllm_embedding(self, data):
+        if os.environ.get("CUDA_MEM_SAVE", False):
+            self.vpm.to(self.device)
+            self.query.data = self.query.data.to(self.device)
         if 'vision_hidden_states' not in data:
             pixel_values = data['pixel_values']
             vision_hidden_states = self.vpm(pixel_values=pixel_values, query_embed=self.query)
+            if os.environ.get("CUDA_MEM_SAVE", False):
+                self.vpm.cpu()
+                self.query.data = self.query.data.cpu()
+                torch.cuda.empty_cache()
+                self.mapping.to(self.device)
+                self.llm.to(self.device)
+
             vision_hidden_states = self.mapping(vision_hidden_states)  # (query_num, llm_dim)
         else:
             vision_hidden_states = data['vision_hidden_states']
+            if os.environ.get("CUDA_MEM_SAVE", False):
+                self.vpm.cpu()
+                self.query.data = self.query.data.cpu()
+                torch.cuda.empty_cache()
+                self.mapping.to(self.device)
+                self.llm.to(self.device)
+
 
         vllm_embedding = self.llm.input_embedding(data['input_ids'], data['input_id_subs'])
         vision_hidden_states = vision_hidden_states.type(vllm_embedding.dtype)
@@ -66,7 +85,7 @@ class VLU_CPMBee(torch.nn.Module):
         image_bound = image_bound.squeeze(1)
         image_indices = torch.stack(
             [torch.arange(r[0], r[1], dtype=torch.long) for r in image_bound]
-        ).to(vllm_embedding.device)
+        ).to(self.device)
 
         vllm_embedding.scatter_(1, image_indices.unsqueeze(-1).repeat(1, 1, vllm_embedding.shape[-1]),
                                 vision_hidden_states)

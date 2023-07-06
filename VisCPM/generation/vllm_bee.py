@@ -2,6 +2,7 @@ from typing import Any, Dict, List, Tuple, Optional
 import numpy as np
 import torch
 import torch.nn.functional as F
+import os
 
 from VisCPM.generation.generation_utils import BeamHypotheses, apply_repetition_penalty
 from VisCPM.cpm_tokenizers.bee import CPMBeeTokenizer
@@ -11,11 +12,12 @@ from VisCPM.utils.utils import convert_data_to_id, pad
 
 
 class VLLMCPMBeeGeneration:
-    def __init__(self, model: VLU_CPMBee, tokenizer: CPMBeeTokenizer, transform):
+    def __init__(self, model: VLU_CPMBee, tokenizer: CPMBeeTokenizer, transform, device):
         model.eval()
         self.model = model
         self.tokenizer = tokenizer
         self.transform = transform
+        self.device = device
 
     def _convert_to_tensors(self, data: Any, in_context_samples: List[Any] = [], max_inp_length: Optional[int] = None):
         answer_placeholders = []
@@ -200,7 +202,7 @@ class VLLMCPMBeeGeneration:
         keys = set(pack_tensor[0].keys())
         padded = {}
         for key in keys:
-            padded[key] = pad(pack_tensor, key).cuda()
+            padded[key] = pad(pack_tensor, key).to(self.device)
 
         max_num_rels = 0
         for rel in segment_rel_pack:
@@ -208,14 +210,14 @@ class VLLMCPMBeeGeneration:
         padded_rels = torch.zeros(len(segment_rel_pack), max_num_rels, dtype=torch.int32)
         for i, rel in enumerate(segment_rel_pack):
             padded_rels[i, : rel.size(0)] = rel
-        padded["segment_rel"] = padded_rels.cuda()
+        padded["segment_rel"] = padded_rels.to(self.device)
         padded["batch_ext_table_ids"] = torch.tensor(
-            batch_ext_table_ids, dtype=torch.int32, device="cuda"
+            batch_ext_table_ids, dtype=torch.int32, device=self.device
         )
         padded["batch_ext_table_sub"] = torch.tensor(
-            batch_ext_table_sub, dtype=torch.int32, device="cuda"
+            batch_ext_table_sub, dtype=torch.int32, device=self.device
         )
-        padded['image_bound'] = torch.from_numpy(image_bound).unsqueeze(0).cuda()
+        padded['image_bound'] = torch.from_numpy(image_bound).unsqueeze(0).to(self.device)
         return padded, other_info
 
     def generate(self, img_list, max_inp_length: Optional[int] = None, extra_inp_dict: dict = None, vision_hidden_states=None, return_vision_hidden_states=False, **kwargs):
@@ -235,13 +237,17 @@ class VLLMCPMBeeGeneration:
 
         with torch.inference_mode():
             if vision_hidden_states is None:
-                pixel_values = torch.stack(pixel_values).cuda()
+                pixel_values = torch.stack(pixel_values).to(self.device)
                 model_inputs['pixel_values'] = pixel_values
             else:
                 model_inputs['vision_hidden_states'] = vision_hidden_states
 
             model_inputs['hidden_states'], vision_hidden_states = self.model.get_vllm_embedding(model_inputs)
             result_ids = self._decode(model_inputs, other_info, **kwargs)
+            if os.environ.get("CUDA_MEM_SAVE", False):
+                self.model.llm.cpu()
+                self.model.mapping.cpu()
+                torch.cuda.empty_cache()
         for sent_id, result in enumerate(result_ids):
             ans_result_map: Dict[int, List[int]] = {}
             for raw_word_id, ans_id in result:
@@ -449,7 +455,7 @@ class VLLMCPMBeeBeamSearch(VLLMCPMBeeGeneration):
                 input = torch.cat(
                     [
                         input,
-                        torch.tensor(tmp_input, dtype=torch.int32, device="cuda").view(
+                        torch.tensor(tmp_input, dtype=torch.int32, device=self.device).view(
                             batch_size * beam_size, 1
                         ),
                     ],
@@ -457,20 +463,20 @@ class VLLMCPMBeeBeamSearch(VLLMCPMBeeGeneration):
                 )
                 logits, _, past_key_values = self.model.llm.inference(
                     input=input[:, -1:],
-                    input_sub=torch.tensor(tmp_input_sub, dtype=torch.int32, device="cuda").view(
+                    input_sub=torch.tensor(tmp_input_sub, dtype=torch.int32, device=self.device).view(
                         batch_size * beam_size, 1
                     ),
-                    position=torch.tensor(tmp_position, dtype=torch.int32, device="cuda").view(
+                    position=torch.tensor(tmp_position, dtype=torch.int32, device=self.device).view(
                         batch_size * beam_size, 1
                     ),
                     context=torch.ones(
-                        batch_size * beam_size, dtype=torch.bool, device="cuda"
+                        batch_size * beam_size, dtype=torch.bool, device=self.device
                     ).view(batch_size * beam_size, 1),
                     sample_ids=torch.zeros(
-                        batch_size * beam_size, dtype=torch.int32, device="cuda"
+                        batch_size * beam_size, dtype=torch.int32, device=self.device
                     ).view(batch_size * beam_size, 1),
                     num_segments=num_segments[:, -1:],
-                    segment=torch.tensor(tmp_segment, dtype=torch.int32, device="cuda").view(
+                    segment=torch.tensor(tmp_segment, dtype=torch.int32, device=self.device).view(
                         batch_size * beam_size, 1
                     ),
                     segment_rel_offset=segment_rel_offset[:, -1:],

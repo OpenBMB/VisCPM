@@ -61,9 +61,9 @@ class CPMBeeTokenizer(object):
         self.space_token = " "
 
         if old_version:
-            self.encoder = load_vocab(open(os.path.join(file_path, "vocabs/bee-old.txt")))
+            self.encoder = load_vocab(open(os.path.join(file_path, "vocabs/bee-old.txt"), encoding="utf-8"))
         else:
-            self.encoder = load_vocab(open(os.path.join(file_path, "vocabs/bee.txt")))
+            self.encoder = load_vocab(open(os.path.join(file_path, "vocabs/bee.txt"), encoding="utf-8"))
         self.encoder[self.line_token] = self.encoder["</n>"]
         self.encoder[self.space_token] = self.encoder["</_>"]
         del self.encoder["</n>"]
