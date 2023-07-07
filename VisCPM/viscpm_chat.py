@@ -121,7 +121,7 @@ class VisCPMChat(object):
                 )
                 for idx, has_nsfw_concept in enumerate(has_nsfw_concept):
                     if has_nsfw_concept:
-                        flagged_images[idx] = images[idx]
+                        flagged_images[idx] = image[idx]
                         image[idx] = np.zeros(image[idx].shape)  # black image
         else:
             has_nsfw_concept = None
