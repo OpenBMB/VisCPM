@@ -14,14 +14,15 @@ from typing import Optional, List
 
 from VisCPM.models import SDWrapper, VLG_CPMBee, CPMBeeConfig, CPMBeeTorch
 from VisCPM.utils.utils import CPMBeeCollater, convert_data_to_id
+import bminf
 
 
 def grid_image(images: List[Image.Image]) -> Image.Image:
     n = len(images)
     nrow = min(n, 8)
     images_tensor = [to_tensor(image) for image in images]
-    images_tensor_grid = make_grid(images_tensor, nrow, padding=0)
-    images_grid = to_pil_image(images_tensor_grid)
+    images_tensor_grid = [make_grid(x, nrow, padding=0) for x in images_tensor]
+    images_grid = [to_pil_image(x) for x in images_tensor_grid]
     return images_grid
 
 
@@ -34,8 +35,22 @@ class VisCPMPaint:
         self.sd = SDWrapper(image_safety_checker=image_safety_checker)
         self.model = VLG_CPMBee(self.llm, self.sd)
         self.load_model(model_path)
-        if not os.getenv('CUDA_MEM_SAVE', False):
-            self.model.to(self.device)
+
+        if os.getenv('CUDA_MEMERY_CPMBEE_MAX', False):
+            limit = os.getenv("CUDA_MEMERY_CPMBEE_MAX")
+            try:
+                assert limit.lower().endswith('g')
+                memery_limit = int(limit.lower()[:-1]) * (1 << 30)
+                print(f'use CUDA_MEMERY_CPMBEE_MAX={limit} to limit cpmbee cuda memery cost ')
+            except:
+                memery_limit = None
+                print(f'environment CUDA_MEMERY_CPMBEE_MAX={limit} parse error')
+
+            self.llm = bminf.wrapper(self.llm, memory_limit=memery_limit)
+            self.sd.to(self.device)
+        else:
+            self.llm.to(self.device)
+            self.sd.to(self.device)
 
         if prompt_safety_checker:
             model = BertForSequenceClassification.from_pretrained('openbmb/VisCPM-Paint', subfolder='text-security-checker')
@@ -179,12 +194,16 @@ class VisCPMPaint:
         )
         images, nsfw_content_detected = output.images, output.nsfw_content_detected
         if self.clip_ranker:
-            clip_input = self.clip_preprocessor(text=clip_text, images=images,
-                                                return_tensors='pt', padding=True).to(self.device)
-            clip_output = self.clip_ranker(**clip_input)
-            clip_score = torch.diag(clip_output.logits_per_image)
-            _, indices = torch.sort(-clip_score)
-            images = images[indices[0]]
-            return grid_image([images])
+            n = num_images_per_prompt // 4
+            new_images = []
+            for i in range(n):
+                clip_input = self.clip_preprocessor(text=clip_text, images=images[i * 4: (i + 1) * 4],
+                                                    return_tensors='pt', padding=True).to(self.device)
+                clip_output = self.clip_ranker(**clip_input)
+                clip_score = torch.diag(clip_output.logits_per_image)
+                _, indices = torch.sort(-clip_score)
+                img = images[i * 4: (i + 1) * 4][indices[0]]
+                new_images.append(img)
+            return grid_image(new_images)
         else:
             return grid_image(images)

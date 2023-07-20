@@ -211,8 +211,8 @@ class SDWrapper(torch.nn.Module):
                 print(
                     "Potential NSFW content was detected in one or more images. A black image will be returned instead."
                 )
-                for idx, has_nsfw_concept in enumerate(has_nsfw_concept):
-                    if has_nsfw_concept:
+                for idx, _has_nsfw_concept in enumerate(has_nsfw_concept):
+                    if _has_nsfw_concept:
                         image[idx] = np.zeros(image[idx].shape)  # black image
         else:
             has_nsfw_concept = None

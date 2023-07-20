@@ -244,10 +244,6 @@ class VLLMCPMBeeGeneration:
 
             model_inputs['hidden_states'], vision_hidden_states = self.model.get_vllm_embedding(model_inputs)
             result_ids = self._decode(model_inputs, other_info, **kwargs)
-            if os.environ.get("CUDA_MEM_SAVE", False):
-                self.model.llm.cpu()
-                self.model.mapping.cpu()
-                torch.cuda.empty_cache()
         for sent_id, result in enumerate(result_ids):
             ans_result_map: Dict[int, List[int]] = {}
             for raw_word_id, ans_id in result:

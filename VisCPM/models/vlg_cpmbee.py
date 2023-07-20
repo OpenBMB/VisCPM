@@ -41,8 +41,6 @@ class VLG_CPMBee(torch.nn.Module):
     ):
         device = data['input_ids'].device
         bs = data['input_ids'].size(0)
-        if os.getenv('CUDA_MEM_SAVE', False): 
-            self.llm.to(device)
         with torch.no_grad():
             llm_hidden_state = self.llm.input_embedding(data['input_ids'], data['input_id_subs'])
             _, hidden_states = self.llm(
@@ -79,16 +77,9 @@ class VLG_CPMBee(torch.nn.Module):
                 ext_table_sub=uncond_data['ext_table_sub'],
                 hidden_states=uncond_llm_hidden_state
             )
-        if os.getenv('CUDA_MEM_SAVE', False):
-            self.llm.cpu()
-            torch.cuda.empty_cache()
-            self.sd.to(device)
         image = self.sd.generate(
             hidden_states,
             uncond_hidden_states,
             **generate_kwargs
         )
-        if os.getenv('CUDA_MEM_SAVE', False):
-            self.sd.cpu()
-            torch.cuda.empty_cache()
         return image

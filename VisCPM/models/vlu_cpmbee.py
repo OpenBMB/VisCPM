@@ -54,28 +54,13 @@ class VLU_CPMBee(torch.nn.Module):
         )
 
     def get_vllm_embedding(self, data):
-        if os.environ.get("CUDA_MEM_SAVE", False):
-            self.vpm.to(self.device)
-            self.query.data = self.query.data.to(self.device)
         if 'vision_hidden_states' not in data:
             pixel_values = data['pixel_values']
             vision_hidden_states = self.vpm(pixel_values=pixel_values, query_embed=self.query)
-            if os.environ.get("CUDA_MEM_SAVE", False):
-                self.vpm.cpu()
-                self.query.data = self.query.data.cpu()
-                torch.cuda.empty_cache()
-                self.mapping.to(self.device)
-                self.llm.to(self.device)
 
             vision_hidden_states = self.mapping(vision_hidden_states)  # (query_num, llm_dim)
         else:
             vision_hidden_states = data['vision_hidden_states']
-            if os.environ.get("CUDA_MEM_SAVE", False):
-                self.vpm.cpu()
-                self.query.data = self.query.data.cpu()
-                torch.cuda.empty_cache()
-                self.mapping.to(self.device)
-                self.llm.to(self.device)
 
 
         vllm_embedding = self.llm.input_embedding(data['input_ids'], data['input_id_subs'])

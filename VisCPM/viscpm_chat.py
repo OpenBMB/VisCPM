@@ -14,8 +14,8 @@ from VisCPM.generation.vllm_bee import VLLMCPMBeeBeamSearch
 from VisCPM.models import VLU_CPMBee
 from VisCPM.models.cpmbee import CPMBeeConfig, CPMBeeTorch
 from VisCPM.utils import utils
+import bminf
 
-torch.set_num_threads(1)
 file_path = os.path.dirname(__file__)
 
 
@@ -55,8 +55,24 @@ class VisCPMChat(object):
         vlu_state_dict = torch.load(model_path, map_location="cpu")
         self.vlu_cpmbee.load_state_dict(vlu_state_dict)
         self.vlu_cpmbee.half()
-        if not os.environ.get("CUDA_MEM_SAVE", False):
+
+        if os.getenv('CUDA_MEMERY_CPMBEE_MAX', False):
+            limit = os.getenv("CUDA_MEMERY_CPMBEE_MAX")
+            try:
+                assert limit.lower().endswith('g')
+                memery_limit = int(limit.lower()[:-1]) * (1 << 30)
+                print(f'use CUDA_MEMERY_CPMBEE_MAX={limit} to limit cpmbee cuda memery cost ')
+            except:
+                memery_limit = None
+                print(f'environment CUDA_MEMERY_CPMBEE_MAX={limit} parse error')
+
+            self.cpm_model = bminf.wrapper(self.cpm_model, memory_limit=memery_limit)
+            self.vlu_cpmbee.query.data = self.vlu_cpmbee.query.data.to(self.device)
+            self.vlu_cpmbee.mapping.to(self.device)
+            self.vlu_cpmbee.vpm.to(self.device)
+        else:
             self.vlu_cpmbee.to(self.device)
+
         self.vlu_cpmbee.eval()
 
         if image_safety_checker:
@@ -78,7 +94,7 @@ class VisCPMChat(object):
         }
 
         images, has_nsfw_concept = self.run_image_safety_checker(
-            np.asarray(image), self.device, torch.float
+            [np.asarray(image)], self.device, torch.float
         )
         if has_nsfw_concept and has_nsfw_concept[0]:
             print("Content is not safe for work.")
@@ -103,26 +119,36 @@ class VisCPMChat(object):
         context += "AI: " + answer + "\n"
         return answer, context, vision_hidden_states
 
+    def numpy_to_pil(self, images):
+        """
+        Convert a numpy image or a batch of images to a PIL image.
+        """
+        if images.ndim == 3:
+            images = images[None, ...]
+        images = (images * 255).round().astype("uint8")
+        if images.shape[-1] == 1:
+            # special case for grayscale (single channel) images
+            pil_images = [Image.fromarray(image.squeeze(), mode="L") for image in images]
+        else:
+            pil_images = [Image.fromarray(image) for image in images]
+
+        return pil_images
+
     def run_image_safety_checker(self, image, device, dtype):
         if self.image_safety_checker is not None:
             image_safety_checker_input = self.feature_extractor(
-                image, return_tensors="pt"
-            ).to(device)
+                self.numpy_to_pil(np.asarray(image)), return_tensors="pt").to(device)
             image, has_nsfw_concept = self.image_safety_checker(
-                images=image,
-                clip_input=image_safety_checker_input.pixel_values.to(dtype),
+                images=image, clip_input=image_safety_checker_input.pixel_values.to(dtype)
             )
-            flagged_images = np.zeros((2, *image.shape[1:]))
             if any(has_nsfw_concept):
                 print(
-                    "Potential NSFW content was detected in one or more images. A black image will be returned"
-                    " instead."
-                    f"{'You may look at this images in the `unsafe_images` variable of the output at your own discretion.' if enable_safety_guidance else 'Try again with a different prompt and/or seed.'}"
+                    "Potential NSFW content was detected in one or more images. A black image will be returned instead."
                 )
-                for idx, has_nsfw_concept in enumerate(has_nsfw_concept):
-                    if has_nsfw_concept:
-                        flagged_images[idx] = image[idx]
+                for idx, _has_nsfw_concept in enumerate(has_nsfw_concept):
+                    if _has_nsfw_concept:
                         image[idx] = np.zeros(image[idx].shape)  # black image
         else:
             has_nsfw_concept = None
         return image, has_nsfw_concept
+
