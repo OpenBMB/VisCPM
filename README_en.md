@@ -258,7 +258,10 @@ After downloading the checkpoints, please refer to the following codes to run `V
 </div>
 
 We can have a multimodal conversation with VisCPM-Chat using a few lines of codes.
-
+```shell
+# If the memory of your GPU is less than 40g, you can introduce the following environment variables. After the introduction, the memory usage is about 17G, but the time required for inference will be longer. This feature relies on the bminf package.
+export CUDA_MEMERY_CPMBEE_MAX=1g
+```
 ```python
 from VisCPM import VisCPMChat
 from PIL import Image
@@ -332,8 +335,8 @@ After downloading the checkpoints, please refer to the following codes to run `V
 
 The input prompts of the images above can be found at [prompts.txt](data/prompts.txt).
 ```shell
-# If the memory of your GPU is less than 40g, you can introduce the following environment variables. After the introduction, the memory usage is about 22G, but the time required for inference will be longer.
-export CUDA_MEM_SAVE=True 
+# If the memory of your GPU is less than 40g, you can introduce the following environment variables. After the introduction, the memory usage is about 17G, but the time required for inference will be longer. This feature relies on the bminf package.
+export CUDA_MEMERY_CPMBEE_MAX=1g
 ```
 ```python
 from VisCPM import VisCPMPaint
@@ -367,15 +370,17 @@ VisCPM is governed by the [GML License](https://github.com/OpenBMB/General-Model
 
 The CPM-Bee base, governed by the [General Model License (GML)](https://github.com/OpenBMB/General-Model-License/blob/main/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE-%E6%9D%A5%E6%BA%90%E8%AF%B4%E6%98%8E-%E5%AE%A3%E4%BC%A0%E9%99%90%E5%88%B6-%E5%95%86%E4%B8%9A%E6%8E%88%E6%9D%83.md), permits commercial usage. If you intend to utilize the model for commercial purposes, please reach out to cpm@modelbest.cn to obtain the certificate of authorization.
 
+## 📢 News
+`VisCPM`` is continuously being upgraded. In the near future, we will support functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
+
+- [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat) and [VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint) have been integrated into the huggingface framework, which is convenient for developers
+- we provide a simple web version demo, which is convenient for users to quickly deploy services
+- we provide two online demos [Chat](https://huggingface.co/spaces/openbmb/viscpm-chat) and [Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) for users who do not have conditions to deploy
 
 ## ✅ Todo
 `VisCPM` is still undergoing continuous improvement, and we will further optimize it in the following aspects:
-- [ ] Integrate into 🤗 [huggingface]((https://huggingface.co/openbmb))
-- [ ] Enhancing the safety model
-- [ ] Supporting rapid web deployment
 - [ ] Enabling model quantization
 - [ ] Supporting model fine-tuning
-
 
 ## 🏫 Institutions
 

@@ -263,6 +263,10 @@ VisCPM目前需要单卡20GB以上的GPU运行，我们未来会支持更加节�
 </div>
 
 VisCPM-Chat可以通过几行代码实现多模态对话，我们在代码中默认开启了对输入图片的安全检查。
+```shell
+# 如果您单卡显存不足40g，可以引入如下环境变量并将安全模块开关关闭。引入后显存占用约为5G，但推理所需时间会变长。此选项依赖bminf，需要安装bminf依赖库。
+export CUDA_MEMERY_CPMBEE_MAX=1g
+```
 ```python
 from VisCPM import VisCPMChat
 from PIL import Image
@@ -326,8 +330,8 @@ AI: “明月几时有，把酒问青天。” 这是苏轼的《水调歌头》
 
 生成上面图片的文本输入可参考[prompts.txt](data/prompts.txt)。
 ```shell
-# 如果您单卡显存不足40g，可以引入如下环境变量。引入后显存占用约为22G，但推理所需时间会变长
-export CUDA_MEM_SAVE=True 
+# 如果您单卡显存不足40g，可以引入如下环境变量并将安全模块开关关闭。引入后显存占用约为17G，但推理所需时间会变长。此选项依赖bminf，需要安装bminf依赖库。
+export CUDA_MEMERY_CPMBEE_MAX=1g
 ```
 ```python
 from VisCPM import VisCPMPaint
@@ -359,11 +363,14 @@ VisCPM系列模型采用协议为["通用模型许可协议-来源说明-宣传�
 CPM-Bee基座采用协议为[“通用模型许可协议-来源说明-宣传限制-商业授权”](https://github.com/OpenBMB/General-Model-License/blob/main/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE-%E6%9D%A5%E6%BA%90%E8%AF%B4%E6%98%8E-%E5%AE%A3%E4%BC%A0%E9%99%90%E5%88%B6-%E5%95%86%E4%B8%9A%E6%8E%88%E6%9D%83.md)，允许商用，如需将模型用于商业用途，请联系cpm@modelbest.cn来获取书面授权。
 
 
+## 📢 更新
+`VisCPM`在持续升级中，近期我们会陆续支持低资源推理、网页版部署等功能，并提供在线Demo供大家使用，未来我们会提供能力升级的更高版本的模型，欢迎大家持续关注！
+- [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat)和[VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint)均已整合到huggingface框架中，方便大家使用
+- 提供简易部署网页版demo，方便用户快速部署服务
+- 提供[Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)和[Paint](https://huggingface.co/spaces/openbmb/viscpm-paint)两个在线体验demo，方便没有条件部署的用户体验`VisCPM`
+
 ## ✅ TODO
-`VisCPM`仍然在不断完善中，我们将会在以下方面进一步优化：
-- [ ] 整合到🤗 [huggingface](https://huggingface.co/openbmb)代码框架中
-- [ ] 完善安全模型功能
-- [ ] 支持快速网页部署功能
+
 - [ ] 支持模型量化功能，降低推理成本
 - [ ] 支持模型微调功能
 
