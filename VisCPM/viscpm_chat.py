@@ -56,17 +56,17 @@ class VisCPMChat(object):
         self.vlu_cpmbee.load_state_dict(vlu_state_dict)
         self.vlu_cpmbee.half()
 
-        if os.getenv('CUDA_MEMERY_CPMBEE_MAX', False):
-            limit = os.getenv("CUDA_MEMERY_CPMBEE_MAX")
+        if os.getenv('CUDA_MEMORY_CPMBEE_MAX', False):
+            limit = os.getenv("CUDA_MEMORY_CPMBEE_MAX")
             try:
                 assert limit.lower().endswith('g')
-                memery_limit = int(limit.lower()[:-1]) * (1 << 30)
-                print(f'use CUDA_MEMERY_CPMBEE_MAX={limit} to limit cpmbee cuda memery cost ')
+                memory_limit = int(limit.lower()[:-1]) * (1 << 30)
+                print(f'use CUDA_MEMORY_CPMBEE_MAX={limit} to limit cpmbee cuda memory cost ')
             except:
-                memery_limit = None
-                print(f'environment CUDA_MEMERY_CPMBEE_MAX={limit} parse error')
+                memory_limit = None
+                print(f'environment CUDA_MEMORY_CPMBEE_MAX={limit} parse error')
 
-            self.cpm_model = bminf.wrapper(self.cpm_model, memory_limit=memery_limit)
+            self.cpm_model = bminf.wrapper(self.cpm_model, memory_limit=memory_limit)
             self.vlu_cpmbee.query.data = self.vlu_cpmbee.query.data.to(self.device)
             self.vlu_cpmbee.mapping.to(self.device)
             self.vlu_cpmbee.vpm.to(self.device)

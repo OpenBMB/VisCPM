@@ -32,11 +32,10 @@
 ## 📰 Update News
 `VisCPM`` is continuously being upgraded. We have provided functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
 
-
-- **[2023/07/20]** 🌐 we provide two online demos [Chat](https://huggingface.co/spaces/openbmb/viscpm-chat) and [Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) for users who do not have conditions to deploy
-- **[2023/07/20]** 🎢 we provide a simple web version demo, which is convenient for users to quickly deploy services
-- **[2023/07/20]** ⚡️we provide bminf support for low-resource users to deploy and use
-- **[2023/07/18]** 🤗 [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat) and [VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint) have been integrated into the huggingface🤗 framework, which is convenient for developers
+- **[2023/07/20]** 🌐 we release VisCPM [Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)[Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) online demo!
+- **[2023/07/20]** 🎢 we provide one-click deployment of local web version demo!
+- **[2023/07/20]** ⚡️ we support low-resource inference, with minimum 5G GPU memory cost to run VisCPM-Chat!
+- **[2023/07/18]** 🤗 VisCPM [Chat](https://huggingface.co/openbmb/VisCPM-Chat)[Paint](https://huggingface.co/openbmb/VisCPM-Paint) has been integrated into the huggingface framework!
 
 ## <img src="figures/chat.png" height="28px" /> VisCPM-Chat
 `VisCPM-Chat` supports bilingual multimodal conversations involving images in both Chinese and English. The model utilizes `Q-Former` as the visual encoder and `CPM-Bee` (10B) as the base LLM. It combines visual and language models and is optimized with the language modeling training objective. The model training consists of two stages: pretraining and instruction tuning.
@@ -273,7 +272,7 @@ After downloading the checkpoints, please refer to the following codes to run `V
 We can have a multimodal conversation with VisCPM-Chat using a few lines of codes.
 ```shell
 # If the memory of your GPU is less than 40g, you can introduce the following environment variables. After the introduction, the memory usage is about 17G, but the time required for inference will be longer. This feature relies on the bminf package.
-export CUDA_MEMERY_CPMBEE_MAX=1g
+export CUDA_MEMORY_CPMBEE_MAX=1g
 ```
 ```python
 from VisCPM import VisCPMChat
@@ -349,7 +348,7 @@ After downloading the checkpoints, please refer to the following codes to run `V
 The input prompts of the images above can be found at [prompts.txt](data/prompts.txt).
 ```shell
 # If the memory of your GPU is less than 40g, you can introduce the following environment variables. After the introduction, the memory usage is about 17G, but the time required for inference will be longer. This feature relies on the bminf package.
-export CUDA_MEMERY_CPMBEE_MAX=1g
+export CUDA_MEMORY_CPMBEE_MAX=1g
 ```
 ```python
 from VisCPM import VisCPMPaint
@@ -366,6 +365,20 @@ In our code, we have enabled the default security checks for both input text and
 Additionally, we have implemented a default setting of reranking for the generated images. This means that for a given input, we generate four images simultaneously and return the one with the highest relevance score to the input, which is evaluated using [Chinese-Clip](https://github.com/OFA-Sys/Chinese-CLIP). Reranking enhances the stability of the generated image quality but may also slow the model's generation speed. If you prefer to obtain the generated results quickly, you can disable the reranking mechanism.
 
 If you are providing English text as input for generating images, it is advisable to disable the reranking mechanism and input text checker, since the scoring model used for reranking and safety checker for the input prompt are specifically trained for Chinese text.
+
+### Low-Resource Inference
+
+We use bminf to reduce GPU memory costs. First you need to install bminf by `pip install bminf`, and then specify `export CUDA_MEMORY_CPMBEE_MAX=1g` the environment variable in shell, and then follow the above steps to inference. The minimum GPU memory usage of VisCPM-Chat can be reduced to 5g, and the minimum GPU memory usage of VisCPM-Paint can be reduced to 17g.
+
+### Demo Deployment
+
+We provide a simple web version demo based on gradio. First you need to install gradio: `pip install gradio`, and then execute the following command:
+```shell
+git clone https://github.com/OpenBMB/VisCPM.git
+cd VisCPM
+python demo_chat.py # viscpm_chat demo, or
+python demo_paint.py # viscpm_paint demo
+```
 
 ## 🛡 Safety 
 

@@ -35,10 +35,10 @@
 ## 📰 更新信息
 `VisCPM`在持续升级中，近期我们支持了低资源推理、网页版部署等功能，并提供在线Demo供大家使用，未来我们会提供能力升级的更高版本的模型，欢迎大家持续关注！
 
-- **[2023/07/20]** 🌐 提供[Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)和[Paint](https://huggingface.co/spaces/openbmb/viscpm-paint)两个在线体验demo，方便没有条件部署的用户体验`VisCPM`
-- **[2023/07/20]** 🎢 提供简易部署网页版demo，方便用户快速部署服务
-- **[2023/07/20]** ⚡️ 提供bminf支持，方便低资源用户部署使用
-- **[2023/07/18]** 🤗 [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat)和[VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint)均已整合到huggingface🤗框架中，方便大家使用
+- **[2023/07/20]** 🌐 发布VisCPM [Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)[Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) 的在线Demo，欢迎尝试！
+- **[2023/07/20]** 🎢 支持一键部署本地网页版Demo
+- **[2023/07/20]** ⚡️ 支持低资源推理，最低5G显存运行多模态对话模型！
+- **[2023/07/18]** 🤗 VisCPM [Chat](https://huggingface.co/openbmb/VisCPM-Chat)[Paint](https://huggingface.co/openbmb/VisCPM-Paint) 已整合到Huggingface框架中
 
 ## <img src="figures/chat.png" width="28px" /> VisCPM-Chat
 `VisCPM-Chat`支持面向图像进行中英双语多模态对话。该模型使用`Q-Former`作为视觉编码器，使用CPM-Bee（10B）作为语言基座模型，并通过语言建模训练目标融合视觉和语言模型。模型训练包括预训练和指令精调两阶段：
@@ -260,10 +260,10 @@ VisCPM目前需要单卡20GB以上的GPU运行，我们未来会支持更加节�
 ### 模型下载
 | 模型                   | 描述                         | 下载链接 |
 |----------------------|-------------------|------     |
-| VisCPM-Chat-balance  | 中英文能力较为平衡的多模态对话模型  |     [链接](https://huggingface.co/openbmb/VisCPM-Chat/resolve/main/viscpm_chat_balance_checkpoint.pt)    |
-| VisCPM-Chat-zhplus   | 中文能力突出的多模态对话模型       |     [链接](https://huggingface.co/openbmb/VisCPM-Chat/resolve/main/viscpm_chat_zhplus_checkpoint.pt)   |
-| VisCPM-Paint-balance | 中英文能力较为平衡的文生图模型     |      [链接](https://huggingface.co/openbmb/VisCPM-Paint/resolve/main/viscpm_paint_balance_checkpoint.pt) |
-| VisCPM-Paint-zhplus  | 中文能力突出的文生图模型          |      [链接](https://huggingface.co/openbmb/VisCPM-Paint/resolve/main/viscpm_paint_zhplus_checkpoint.pt)  |
+| VisCPM-Chat-balance  | 中英文能力较为平衡的多模态对话模型  |     [链接](https://huggingface.co/openbmb/VisCPM-Chat/resolve/main/pytorch_model.bin)    |
+| VisCPM-Chat-zhplus   | 中文能力突出的多模态对话模型       |     [链接](https://huggingface.co/openbmb/VisCPM-Chat/resolve/main/pytorch_model.zhplus.bin)   |
+| VisCPM-Paint-balance | 中英文能力较为平衡的文生图模型     |      [链接](https://huggingface.co/openbmb/VisCPM-Paint/resolve/main/pytorch_model.balance.bin) |
+| VisCPM-Paint-zhplus  | 中文能力突出的文生图模型          |      [链接](https://huggingface.co/openbmb/VisCPM-Paint/resolve/main/pytorch_model.bin)  |
 
 ### VisCPM-Chat
 在下载模型权重后，可以使用如下代码运行VisCPM-Chat（`'/path/to/checkpoint'`改为模型存放路径）
@@ -277,7 +277,7 @@ VisCPM目前需要单卡20GB以上的GPU运行，我们未来会支持更加节�
 VisCPM-Chat可以通过几行代码实现多模态对话，我们在代码中默认开启了对输入图片的安全检查。
 ```shell
 # 如果您单卡显存不足40g，可以引入如下环境变量并将安全模块开关关闭。引入后显存占用约为5G，但推理所需时间会变长。此选项依赖bminf，需要安装bminf依赖库。
-export CUDA_MEMERY_CPMBEE_MAX=1g
+export CUDA_MEMORY_CPMBEE_MAX=1g
 ```
 ```python
 from VisCPM import VisCPMChat
@@ -343,7 +343,7 @@ AI: “明月几时有，把酒问青天。” 这是苏轼的《水调歌头》
 生成上面图片的文本输入可参考[prompts.txt](data/prompts.txt)。
 ```shell
 # 如果您单卡显存不足40g，可以引入如下环境变量并将安全模块开关关闭。引入后显存占用约为17G，但推理所需时间会变长。此选项依赖bminf，需要安装bminf依赖库。
-export CUDA_MEMERY_CPMBEE_MAX=1g
+export CUDA_MEMORY_CPMBEE_MAX=1g
 ```
 ```python
 from VisCPM import VisCPMPaint
@@ -359,6 +359,19 @@ image.save('/data/test.png')
 
 VisCPM-Paint目前使用中文模型进行重排序打分，如果输入英文生成图片，请关闭重排序机制和输入文本检查模块。
 
+### 低资源推理
+
+为了方便低资源用户使用，我们借助bminf工具支持更低的显存需求。首先安装bminf依赖`pip install bminf`，然后在命令行中指定`export CUDA_MEMORY_CPMBEE_MAX=1g`（具体数值可以根据个人需求设定），然后按照上述步骤进行推理，VisCPM-Chat最低显存占用可以降至5g，VisCPM-Paint最低显存占用可以降至17g。
+
+### demo部署
+
+我们提供简易的基于gradio的网页版demo，首先安装gradio:`pip install gradio`，然后执行如下命令：
+```shell
+git clone https://github.com/OpenBMB/VisCPM.git
+cd VisCPM
+python demo_chat.py # viscpm_chat demo, or
+python demo_paint.py # viscpm_paint demo
+```
 ## 🛡 安全
 
 ### 安全声明

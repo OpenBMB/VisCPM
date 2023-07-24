@@ -36,17 +36,17 @@ class VisCPMPaint:
         self.model = VLG_CPMBee(self.llm, self.sd)
         self.load_model(model_path)
 
-        if os.getenv('CUDA_MEMERY_CPMBEE_MAX', False):
-            limit = os.getenv("CUDA_MEMERY_CPMBEE_MAX")
+        if os.getenv('CUDA_MEMORY_CPMBEE_MAX', False):
+            limit = os.getenv("CUDA_MEMORY_CPMBEE_MAX")
             try:
                 assert limit.lower().endswith('g')
-                memery_limit = int(limit.lower()[:-1]) * (1 << 30)
-                print(f'use CUDA_MEMERY_CPMBEE_MAX={limit} to limit cpmbee cuda memery cost ')
+                memory_limit = int(limit.lower()[:-1]) * (1 << 30)
+                print(f'use CUDA_MEMORY_CPMBEE_MAX={limit} to limit cpmbee cuda memory cost ')
             except:
-                memery_limit = None
-                print(f'environment CUDA_MEMERY_CPMBEE_MAX={limit} parse error')
+                memory_limit = None
+                print(f'environment CUDA_MEMORY_CPMBEE_MAX={limit} parse error')
 
-            self.llm = bminf.wrapper(self.llm, memory_limit=memery_limit)
+            self.llm = bminf.wrapper(self.llm, memory_limit=memory_limit)
             self.sd.to(self.device)
         else:
             self.llm.to(self.device)
