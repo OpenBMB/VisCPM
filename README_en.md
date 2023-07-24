@@ -6,9 +6,11 @@
   <a href="#-viscpm-chat">Multimodal Conversation Model VisCPM-Chat</a> •
   <a href="#-viscpm-paint">Text-to-image Model VisCPM-Paint</a> •
   <a href="#-inference">Inference</a> •
-  <a href="#-license">License</a> • 
-  <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a>
-  <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a>
+  <a href="#-license">License</a>
+</p>
+<p>
+  <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a> •
+  <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a> •
   <a href="figures/wechat.md">Join Wechat Group</a>
 </p>
 

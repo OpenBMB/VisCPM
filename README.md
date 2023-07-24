@@ -6,9 +6,11 @@
   <a href="#-viscpm-chat">多模态对话模型VisCPM-Chat</a> •
   <a href="#-viscpm-paint">文生图模型VisCPM-Paint</a> •
   <a href="#-使用">使用</a> •
-  <a href="#-开源协议">开源协议</a> • 
-  <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a>
-  <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a>
+  <a href="#-开源协议">开源协议</a>
+</p>
+<p>
+  <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a> •
+  <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a> •
   <a href="figures/wechat.md">加入微信讨论群</a>
 </p>
 
