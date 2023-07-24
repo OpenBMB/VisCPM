@@ -7,6 +7,8 @@
   <a href="#-viscpm-paint">文生图模型VisCPM-Paint</a> •
   <a href="#-使用">使用</a> •
   <a href="#-开源协议">开源协议</a> • 
+  <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a>
+  <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a>
   <a href="figures/wechat.md">加入微信讨论群</a>
 </p>
 
@@ -27,6 +29,14 @@
 
 <img src="figures/model_zh.png" width="600px">
 </div>
+
+## 📰 更新信息
+`VisCPM`在持续升级中，近期我们支持了低资源推理、网页版部署等功能，并提供在线Demo供大家使用，未来我们会提供能力升级的更高版本的模型，欢迎大家持续关注！
+
+- **[2023/07/20]** 🌐 提供[Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)和[Paint](https://huggingface.co/spaces/openbmb/viscpm-paint)两个在线体验demo，方便没有条件部署的用户体验`VisCPM`
+- **[2023/07/20]** 🎢 提供简易部署网页版demo，方便用户快速部署服务
+- **[2023/07/20]** ⚡️ 提供bminf支持，方便低资源用户部署使用
+- **[2023/07/18]** 🤗 [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat)和[VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint)均已整合到huggingface🤗框架中，方便大家使用
 
 ## <img src="figures/chat.png" width="28px" /> VisCPM-Chat
 `VisCPM-Chat`支持面向图像进行中英双语多模态对话。该模型使用`Q-Former`作为视觉编码器，使用CPM-Bee（10B）作为语言基座模型，并通过语言建模训练目标融合视觉和语言模型。模型训练包括预训练和指令精调两阶段：
@@ -362,12 +372,6 @@ VisCPM系列模型采用协议为["通用模型许可协议-来源说明-宣传�
 
 CPM-Bee基座采用协议为[“通用模型许可协议-来源说明-宣传限制-商业授权”](https://github.com/OpenBMB/General-Model-License/blob/main/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE-%E6%9D%A5%E6%BA%90%E8%AF%B4%E6%98%8E-%E5%AE%A3%E4%BC%A0%E9%99%90%E5%88%B6-%E5%95%86%E4%B8%9A%E6%8E%88%E6%9D%83.md)，允许商用，如需将模型用于商业用途，请联系cpm@modelbest.cn来获取书面授权。
 
-
-## 📢 更新
-`VisCPM`在持续升级中，近期我们会陆续支持低资源推理、网页版部署等功能，并提供在线Demo供大家使用，未来我们会提供能力升级的更高版本的模型，欢迎大家持续关注！
-- [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat)和[VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint)均已整合到huggingface框架中，方便大家使用
-- 提供简易部署网页版demo，方便用户快速部署服务
-- 提供[Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)和[Paint](https://huggingface.co/spaces/openbmb/viscpm-paint)两个在线体验demo，方便没有条件部署的用户体验`VisCPM`
 
 ## ✅ TODO
 

@@ -7,6 +7,8 @@
   <a href="#-viscpm-paint">Text-to-image Model VisCPM-Paint</a> •
   <a href="#-inference">Inference</a> •
   <a href="#-license">License</a> • 
+  <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a>
+  <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a>
   <a href="figures/wechat.md">Join Wechat Group</a>
 </p>
 
@@ -24,6 +26,15 @@
 <div align="center">
 <img src="figures/model_en.png" width="600px">
 </div>
+
+## 📰 Update News
+`VisCPM`` is continuously being upgraded. We have provided functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
+
+
+- **[2023/07/20]** 🌐 we provide two online demos [Chat](https://huggingface.co/spaces/openbmb/viscpm-chat) and [Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) for users who do not have conditions to deploy
+- **[2023/07/20]** 🎢 we provide a simple web version demo, which is convenient for users to quickly deploy services
+- **[2023/07/20]** ⚡️we provide bminf support for low-resource users to deploy and use
+- **[2023/07/18]** 🤗 [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat) and [VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint) have been integrated into the huggingface🤗 framework, which is convenient for developers
 
 ## <img src="figures/chat.png" height="28px" /> VisCPM-Chat
 `VisCPM-Chat` supports bilingual multimodal conversations involving images in both Chinese and English. The model utilizes `Q-Former` as the visual encoder and `CPM-Bee` (10B) as the base LLM. It combines visual and language models and is optimized with the language modeling training objective. The model training consists of two stages: pretraining and instruction tuning.
@@ -369,13 +380,6 @@ To prevent the model from being misused to process or generate content that viol
 VisCPM is governed by the [GML License](https://github.com/OpenBMB/General-Model-License/blob/main/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE-%E6%9D%A5%E6%BA%90%E8%AF%B4%E6%98%8E-%E5%AE%A3%E4%BC%A0%E9%99%90%E5%88%B6-%E9%9D%9E%E5%95%86%E4%B8%9A%E5%8C%96.md), and permits individual and research usages. If you intend to utilize the model for commercial purposes, please reach out to cpm@modelbest.cn to negotiate commercial licensing.
 
 The CPM-Bee base, governed by the [General Model License (GML)](https://github.com/OpenBMB/General-Model-License/blob/main/%E9%80%9A%E7%94%A8%E6%A8%A1%E5%9E%8B%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE-%E6%9D%A5%E6%BA%90%E8%AF%B4%E6%98%8E-%E5%AE%A3%E4%BC%A0%E9%99%90%E5%88%B6-%E5%95%86%E4%B8%9A%E6%8E%88%E6%9D%83.md), permits commercial usage. If you intend to utilize the model for commercial purposes, please reach out to cpm@modelbest.cn to obtain the certificate of authorization.
-
-## 📢 News
-`VisCPM`` is continuously being upgraded. In the near future, we will support functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
-
-- [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat) and [VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint) have been integrated into the huggingface framework, which is convenient for developers
-- we provide a simple web version demo, which is convenient for users to quickly deploy services
-- we provide two online demos [Chat](https://huggingface.co/spaces/openbmb/viscpm-chat) and [Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) for users who do not have conditions to deploy
 
 ## ✅ Todo
 `VisCPM` is still undergoing continuous improvement, and we will further optimize it in the following aspects:
