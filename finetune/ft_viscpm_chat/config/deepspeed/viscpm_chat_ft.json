@@ -1,0 +1,30 @@
+{
+    "train_micro_batch_size_per_gpu": 1,
+    "gradient_accumulation_steps": 1,
+    "optimizer": {
+      "type": "Adam",
+      "params": {
+        "lr": 1e-5,
+        "betas": [
+          0.9,
+          0.98
+        ],
+        "weight_decay": 0.01
+      }
+    },
+    "scheduler": {
+      "type": "WarmupLR",
+      "params": {
+        "warmup_min_lr": 1e-6,
+        "warmup_max_lr": 1e-5,
+        "warmup_num_steps": 200
+      }
+    },
+    "fp16": {
+      "enabled": true
+    },
+    "zero_optimization": {
+      "stage": 2
+    },
+    "steps_per_print": 50
+  }
