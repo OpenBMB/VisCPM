@@ -1,16 +1,18 @@
 <div align="center">
 
 # VisCPM
-**Chinese-English bilingual multi-modal large model series based on CPM (Chinese Pretrained Models) basic model**
+**Chinese-English bilingual large multi-modal model series based on CPM basic model**
 <p align="center">
   <a href="#-viscpm-chat">Multimodal Conversation Model VisCPM-Chat</a> •
   <a href="#-viscpm-paint">Text-to-image Model VisCPM-Paint</a> •
   <a href="#-inference">Inference</a> •
-  <a href="#-license">License</a>
+  <a href="https://arxiv.org/pdf/2308.12038.pdf">Paper</a>
 </p>
 <p>
   <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a> •
   <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a> •
+  <a href="https://huggingface.co/openbmb/VisCPM-Chat"> VisCPM-Chat🤗 </a> •
+  <a href="https://huggingface.co/openbmb/VisCPM-Paint"> VisCPM-Paint🤗 </a> •
   <a href="figures/wechat.md">Join Wechat Group</a>
 </p>
 
@@ -19,7 +21,7 @@
 </p>
 </div>
 
-`VisCPM` is a family of open-source large multimodal models, which support multimodal conversational capabilities (`VisCPM-Chat` model) and text-to-image generation capabilities (`VisCPM-Paint` model) in both Chinese and English, achieving state-of-the-art peformance among Chinese open-source multimodal models. VisCPM is trained based on the large language model [CPM-Bee](https://github.com/OpenBMB/CPM-Bee) with 10B parameters, fusing visual encoder (Q-Former) and visual decoder (Diffusion-UNet) to support visual inputs and outputs. Thanks to the good bilingual capability of CPM-Bee, `VisCPM` can be pre-trained with English multimodal data only and well generalize to achieve promising Chinese multimodal capabilities.
+`VisCPM` is a family of open-source large multimodal models, which support multimodal conversational capabilities (`VisCPM-Chat` model) and text-to-image generation capabilities (`VisCPM-Paint` model) in both Chinese and English, achieving state-of-the-art performance among Chinese open-source multimodal models. VisCPM is trained based on the large language model [CPM-Bee](https://github.com/OpenBMB/CPM-Bee) with 10B parameters, fusing visual encoder (Muffin) and visual decoder (Diffusion-UNet) to support visual inputs and outputs. Thanks to the good bilingual capability of CPM-Bee, `VisCPM` can be pre-trained with English multimodal data only and well generalize to achieve promising Chinese multimodal capabilities.
 
 - **👐 Open-source Usage**: VisCPM is free to be used for personal and research purposes. By open-sourcing the VisCPM model family, we hope to promote the development of the open-source community of large multimodal models and related research.
 - **🌟 Image and text generation coverage**: VisCPM models provide relatively comprehensive support for image and text multimodal capabilities, covering both multimodal conversation (image-to-text generation) capabilities and text-to-image generation capabilities.
@@ -30,21 +32,24 @@
 </div>
 
 ## 📰 Update News
-`VisCPM`` is continuously being upgraded. We have provided functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
+`VisCPM`` is continuously updating. We have provided functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
 
-- **[2023/07/20]** 🌐 we release VisCPM [Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)[Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) online demo!
-- **[2023/07/20]** 🎢 we provide one-click deployment of local web version demo!
-- **[2023/07/20]** ⚡️ we support low-resource inference, with minimum 5G GPU memory cost to run VisCPM-Chat!
-- **[2023/07/18]** 🤗 VisCPM [Chat](https://huggingface.co/openbmb/VisCPM-Chat)[Paint](https://huggingface.co/openbmb/VisCPM-Paint) has been integrated into the huggingface framework!
+- **[2023/08/23]** 📑 We release the paper of VisCPM: [Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf). More impletation details and experimental results are presented in the paper.
+- **[2023/08/18]** ⤴️ We upgrade to [VisCPM-Chat-v1.1](#model-zoo), with stronger detail understanding and complex reasoning ability!
+- **[2023/08/18]** 🛠️ We support [fine-tuning](#Fine-Tuning) to make VisCPM more suitable for your application scenarios!
+- **[2023/07/20]** 🌐 We release [VisCPM-Chat](https://huggingface.co/spaces/openbmb/viscpm-chat) and [VisCPM-Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) online demo!
+- **[2023/07/20]** 🎢 We provide one-click [deployment of local web version demo](#demo-deployment)!
+- **[2023/07/20]** ⚡️ We support [low-resource inference](#low-resource-inference), with minimum 5G GPU memory cost to run VisCPM-Chat!
+- **[2023/07/18]** 🤗 [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat) and [VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint) have been integrated into the huggingface framework!
 
 ## <img src="figures/chat.png" height="28px" /> VisCPM-Chat
-`VisCPM-Chat` supports bilingual multimodal conversations involving images in both Chinese and English. The model utilizes `Q-Former` as the visual encoder and `CPM-Bee` (10B) as the base LLM. It combines visual and language models and is optimized with the language modeling training objective. The model training consists of two stages: pretraining and instruction tuning.
+`VisCPM-Chat` supports bilingual multimodal conversations involving images in both Chinese and English. The model utilizes `Muffin` visual encoding architecture and `CPM-Bee` (10B) as the base LLM. It combines visual and language models and is optimized with the language modeling training objective. The model training consists of two stages: Multimodal Pretraining and Instruction Tuning.
 
-* Pretraining: `VisCPM-Chat` is pretrained using approximately 100M high-quality English text-image pairs. The data sources include CC3M, CC12M, COCO, Visual Genome, Laion, etc. In this stage, the language model parameters remain fixed, and only the parameters of the `Q-Former` are updated to enable efficient alignment of vision and language representations.
+* Multimodal Pretraining: `VisCPM-Chat` is pretrained using approximately 150M high-quality English text-image pairs. The data sources include CC3M, CC12M, COCO, Visual Genome, Laion, etc. In this stage, the language model parameters remain fixed, and only the parameters of visual modules are updated to enable efficient alignment of vision and language representations.
 
 * Instruction Tuning: We utilize the [LLaVA-150K](https://llava-vl.github.io/) dataset that contains English multimodal instruction-following data. We mix this data with corresponding [translated Chinese data](https://huggingface.co/datasets/openbmb/llava_zh) to fine-tune the model and align its multimodal capabilities with user intents. In this stage, we update all model parameters to improve the data efficiency of instruction tuning. Interestingly, we observe that even when using only English instruction data for fine-tuning, the model can well comprehend Chinese questions but can only respond in English. This indicates that the model has achieved good generalization in terms of its multilingual and multimodal capabilities. By incorporating a small amount of translated Chinese data during the instruction tuning stage, we can align the model's response language with the user's question language.
 
-We evaluate the model on the standard [LLaVA English test set](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K) and the translated [Chinese test set](data/translated_LLaVA_qa90) from the standard English test set. The evaluation benchmark examines the model's performance in conversation, detailed description, and complex reasoning, and uses GPT-4 for scoring. It can be observed that `VisCPM-Chat` achieves the best average performance in Chinese multimodal capabilities, excelling in conversation and complex reasoning, while also demonstrating good English multimodal capabilities. We provide two versions of the model, namely `VisCPM-Chat-balance` and `VisCPM-Chat-zhplus`. The former has a balanced ability in both English and Chinese, while the latter has a stronger emphasis on Chinese proficiency. Both models use the same data during the instruction tuning stage. `VisCPM-Chat-zhplus` additionally incorporates 20M cleaned native Chinese text-image pairs and 120M translated text-image pairs in Chinese during the pretraining stage.
+We evaluate the model on the standard [LLaVA English benchmark](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K) and the translated [Chinese benchmark](data/translated_LLaVA_qa90) from the standard English benchmark. The evaluation benchmark examines the model's performance in conversation, detailed description, and complex reasoning, and uses GPT-4 for scoring. It can be observed that `VisCPM-Chat` achieves the best average performance in Chinese multimodal capabilities, excelling in conversation and complex reasoning, while also demonstrating good English multimodal capabilities. We provide two versions of the model, namely `VisCPM-Chat-balance` and `VisCPM-Chat-zhplus`. The former has a balanced ability in both English and Chinese, while the latter has a stronger emphasis on Chinese proficiency. Both models use the same data during the instruction tuning stage. `VisCPM-Chat-zhplus` additionally incorporates 20M cleaned native Chinese text-image pairs and 120M translated text-image pairs in Chinese during the pretraining stage. `VisCPM-Chat-v1.1` additioanlly utilizes UniMM-Chat multimodal instruction tuning dataset.
 
 <table>
     <tr>
@@ -93,7 +98,7 @@ We evaluate the model on the standard [LLaVA English test set](https://huggingfa
         <td align="center">Vicuna-13B</td>
         <td align="center"><b><span style="color:#c00000;">89.5</span></b></td>
         <td align="center"><b><span style="color:#c00000;">70.4</span></b></td>
-        <td align="center"><b><span style="color:#c00000;">96.2</span></b></td>
+        <td align="center">96.2</td>
         <td align="center"><b><span style="color:#c00000;">85.6</span></b></td>
         <td align="center">-</td>
         <td align="center">-</td>
@@ -101,7 +106,7 @@ We evaluate the model on the standard [LLaVA English test set](https://huggingfa
         <td align="center">-</td>
     </tr>
     <tr>
-        <td align="center" rowspan="5">En-Zh Bilingual Model</td>
+        <td align="center" rowspan="6">En-Zh Bilingual Model</td>
         <td align="center">mPLUG-Owl </td>
         <td align="center">LLaMA-7B</td>
         <td align="center">64.6</td>
@@ -121,7 +126,7 @@ We evaluate the model on the standard [LLaVA English test set](https://huggingfa
         <td align="center">80.6</td>
         <td align="center">68.7</td>
         <td align="center">76.6</td>
-        <td align="center"><b><span style="color:#c00000;">87.8</span></b></td>
+        <td align="center">87.8</td>
         <td align="center">83.6</td>
         <td align="center">82.7</td>
     </tr>
@@ -158,8 +163,20 @@ We evaluate the model on the standard [LLaVA English test set](https://huggingfa
         <td align="center">79.6</td>
         <td align="center">90.3</td>
         <td align="center">81.4</td>
-        <td align="center"><b><span style="color:#c00000;">92.1</span></b></td>
-        <td align="center"><b><span style="color:#c00000;">88.2</span></b></td>
+        <td align="center">92.1</td>
+        <td align="center">88.2</td>
+    </tr>
+    <tr>
+        <td align="center">VisCPM-Chat-v1.1</td>
+        <td align="center">CPMBee-10B</td>
+        <td align="center">80.1</td>
+        <td align="center">67.1</td>
+        <td align="center"><b><span style="color:#c00000;">97.1</span></b></td>
+        <td align="center">81.5</td>
+        <td align="center">91.3</td>
+        <td align="center"><b><span style="color:#c00000;">90.7</span></b></td>
+        <td align="center"><b><span style="color:#c00000;">95.4</span></b></td>
+        <td align="center"><b><span style="color:#c00000;">92.5</span></b></td>
     </tr>
 </table>
 
@@ -251,12 +268,11 @@ pip install torch>=1.10
 pip install -r requirements.txt
 ```
 
-`VisCPM` now requires GPUs with more than 20GB memory. We will soon update more memory-friendly inference methods.
-
 ## 💡 Inference
 ### Model Zoo
 | Model                   | Description                         | Download Link |
 |----------------------|-------------------|------     |
+| VisCPM-Chat-v1.1     | Latest version of multimodal conversation model with stronger detail understanding and complex reasoning ability!  |     [download](https://huggingface.co/openbmb/VisCPM-Chat/blob/main/pytorch_model.v1.bin)    |
 | VisCPM-Chat-balance  | Multimodal conversation model with balanced proficiency in both Chinese and English  |     [download](https://huggingface.co/openbmb/VisCPM-Chat/resolve/main/viscpm_chat_balance_checkpoint.pt)    |
 | VisCPM-Chat-zhplus   | Multimodal conversation model with a strong emphasis on Chinese proficiency       |     [download](https://huggingface.co/openbmb/VisCPM-Chat/resolve/main/viscpm_chat_zhplus_checkpoint.pt)   |
 | VisCPM-Paint-balance | Text-to-image model with balanced proficiency in both Chinese and English     |      [download](https://huggingface.co/openbmb/VisCPM-Paint/resolve/main/viscpm_paint_balance_checkpoint.pt) |
@@ -271,7 +287,7 @@ After downloading the checkpoints, please refer to the following codes to run `V
 
 We can have a multimodal conversation with VisCPM-Chat using a few lines of codes.
 ```shell
-# If the memory of your GPU is less than 40g, you can introduce the following environment variables. After the introduction, the memory usage is about 17G, but the time required for inference will be longer. This feature relies on the bminf package.
+# If the memory of your GPU is less than 40G, you can introduce the following environment variables. After the introduction, the memory usage is about 17G, but the time required for inference will be longer. This feature relies on the BMInf package.
 export CUDA_MEMORY_CPMBEE_MAX=1g
 ```
 ```python
@@ -347,7 +363,7 @@ After downloading the checkpoints, please refer to the following codes to run `V
 
 The input prompts of the images above can be found at [prompts.txt](data/prompts.txt).
 ```shell
-# If the memory of your GPU is less than 40g, you can introduce the following environment variables. After the introduction, the memory usage is about 17G, but the time required for inference will be longer. This feature relies on the bminf package.
+# If the memory of your GPU is less than 40G, you can introduce the following environment variables. After the introduction, the memory usage is about 17G, but the time required for inference will be longer. This feature relies on the BMInf package.
 export CUDA_MEMORY_CPMBEE_MAX=1g
 ```
 ```python
@@ -368,7 +384,7 @@ If you are providing English text as input for generating images, it is advisabl
 
 ### Low-Resource Inference
 
-We use bminf to reduce GPU memory costs. First you need to install bminf by `pip install bminf`, and then specify `export CUDA_MEMORY_CPMBEE_MAX=1g` the environment variable in shell, and then follow the above steps to inference. The minimum GPU memory usage of VisCPM-Chat can be reduced to 5g, and the minimum GPU memory usage of VisCPM-Paint can be reduced to 17g.
+We use [BMInf](https://github.com/OpenBMB/BMInf) to reduce GPU memory costs. First you need to install BMInf by `pip install bminf`, and then specify `export CUDA_MEMORY_CPMBEE_MAX=1g` the environment variable in shell, and then follow the above steps to inference. The minimum GPU memory usage of VisCPM-Chat can be reduced to 5G, and the minimum GPU memory usage of VisCPM-Paint can be reduced to 17G.
 
 ### Demo Deployment
 
@@ -379,6 +395,20 @@ cd VisCPM
 python demo_chat.py # viscpm_chat demo, or
 python demo_paint.py # viscpm_paint demo
 ```
+### Fine-Tuning
+We provide the fine-tuning code for VisCPM-Chat. Users can fine-tune it on their own private data. The fine-tuning code is located in the `finetune/ft_viscpm_chat` directory, and the specific usage of the fine-tuning code is as follows:
+```shell
+# Get the dataset
+bash ./finetune/ft_viscpm_chat/get_llava150k_zh.sh
+# Model fine-tuning, note to modify the dataset and model checkpoint paths within
+bash ./finetune/ft_viscpm_chat/run_viscpm_chat_ft.sh
+# node: 8
+# batch_size: 8 * 1
+# More details can be found in './finetune/ft_viscpm_chat/config/viscpm_chat_ft.json' and './finetune/ft_viscpm_chat/run_viscpm_chat_ft.sh'
+```
+Note:
+- `deepspeed-0.9.1` is used in the fine-tuning code, and the installation method can be found in [here](https://www.deepspeed.ai/getting-started/).
+- Currently, we have only tested the codes of fine-tuning on `Linux`. If you are fine-tuning under other system configurations, you may need to modify some of the code
 
 ## 🛡 Safety 
 
@@ -399,7 +429,6 @@ The CPM-Bee base, governed by the [General Model License (GML)](https://github.c
 ## ✅ Todo
 `VisCPM` is still undergoing continuous improvement, and we will further optimize it in the following aspects:
 - [ ] Enabling model quantization
-- [ ] Supporting model fine-tuning
 
 ## 🏫 Institutions
 
@@ -411,14 +440,14 @@ This project is developed by the following institutions:
 
 
 ## Citation
-
+Please consider citing the following papers if our work is helpful to you
 ```bibtex
-@misc{thu-2023-viscpm,
-  author = {THUNLP, ModelBest, Zhihu},
-  title = {VisCPM: Chinese-English Bilingual Multi-modal Large Model Series},
-  year = {2023},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/OpenBMB/VisCPM}}
+@article{viscpm,
+    title={Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages}, 
+    author={Jinyi Hu and Yuan Yao and Chongyi Wang and Shan Wang and Yinxu Pan and Qianyu Chen and Tianyu Yu and Hanghao Wu and Yue Zhao and Haoye Zhang and Xu Han and Yankai Lin and Jiao Xue and Dahai Li and Zhiyuan Liu and Maosong Sun},
+    year={2023},
+    eprint={2308.12038},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
 }
 ```

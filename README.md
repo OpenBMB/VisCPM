@@ -6,11 +6,13 @@
   <a href="#-viscpm-chat">多模态对话模型VisCPM-Chat</a> •
   <a href="#-viscpm-paint">文生图模型VisCPM-Paint</a> •
   <a href="#-使用">使用</a> •
-  <a href="#-开源协议">开源协议</a>
+  <a href="https://arxiv.org/pdf/2308.12038.pdf">论文</a>
 </p>
 <p>
   <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a> •
   <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a> •
+  <a href="https://huggingface.co/openbmb/VisCPM-Chat"> VisCPM-Chat🤗 </a> •
+  <a href="https://huggingface.co/openbmb/VisCPM-Paint"> VisCPM-Paint🤗 </a> •
   <a href="figures/wechat.md">加入微信讨论群</a>
 </p>
 
@@ -19,9 +21,9 @@
 </p>
 </div>
 
-**`VisCPM`** is a family of open-source large multimodal models, which support multimodal conversational capabilities (`VisCPM-Chat` model) and text-to-image generation capabilities (`VisCPM-Paint` model) in both Chinese and English, achieving state-of-the-art peformance among Chinese open-source multimodal models. VisCPM is trained based on the large language model [CPM-Bee](https://github.com/OpenBMB/CPM-Bee) with 10B parameters, fusing visual encoder (Q-Former) and visual decoder (Diffusion-UNet) to support visual inputs and outputs. Thanks to the good bilingual capability of CPM-Bee, `VisCPM` can be pre-trained with English multimodal data only and well generalize to achieve promising Chinese multimodal capabilities.
+**`VisCPM`** is a family of open-source large multimodal models, which support multimodal conversational capabilities (`VisCPM-Chat` model) and text-to-image generation capabilities (`VisCPM-Paint` model) in both Chinese and English, achieving state-of-the-art performance among Chinese open-source multimodal models. VisCPM is trained based on the large language model [CPM-Bee](https://github.com/OpenBMB/CPM-Bee) with 10B parameters, fusing visual encoder (Muffin) and visual decoder (Diffusion-UNet) to support visual inputs and outputs. Thanks to the good bilingual capability of CPM-Bee, `VisCPM` can be pre-trained with English multimodal data only and well generalize to achieve promising Chinese multimodal capabilities.
 
-**`VisCPM`** 是一个开源的多模态大模型系列，支持中英双语的多模态对话能力（`VisCPM-Chat`模型）和文到图生成能力（`VisCPM-Paint`模型），在中文多模态开源模型中达到最佳水平。VisCPM基于百亿参数量语言大模型[CPM-Bee](https://github.com/OpenBMB/CPM-Bee)（10B）训练，融合视觉编码器（Q-Former）和视觉解码器（Diffusion-UNet）以支持视觉信号的输入和输出。得益于CPM-Bee基座优秀的双语能力，`VisCPM`可以仅通过英文多模态数据预训练，泛化实现优秀的中文多模态能力。
+**`VisCPM`** 是一个开源的多模态大模型系列，支持中英双语的多模态对话能力（`VisCPM-Chat`模型）和文到图生成能力（`VisCPM-Paint`模型），在中文多模态开源模型中达到最佳水平。VisCPM基于百亿参数量语言大模型[CPM-Bee](https://github.com/OpenBMB/CPM-Bee)（10B）训练，融合视觉编码器（Muffin）和视觉解码器（Diffusion-UNet）以支持视觉信号的输入和输出。得益于CPM-Bee基座优秀的双语能力，`VisCPM`可以仅通过英文多模态数据预训练，泛化实现优秀的中文多模态能力。
 
 - **👐 开源使用**：VisCPM可以自由被用于个人和研究用途。我们希望通过开源VisCPM模型系列，推动多模态大模型开源社区和相关研究的发展。
 - **🌟 涵盖图文双向生成**：VisCPM模型系列较为全面地支持了图文多模态能力，涵盖多模态对话（图到文生成）能力和文到图生成能力。
@@ -35,34 +37,37 @@
 ## 📰 更新信息
 `VisCPM`在持续升级中，近期我们支持了低资源推理、网页版部署等功能，并提供在线Demo供大家使用，未来我们会提供能力升级的更高版本的模型，欢迎大家持续关注！
 
-- **[2023/07/20]** 🌐 发布VisCPM [Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)[Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) 的在线Demo，欢迎尝试！
-- **[2023/07/20]** 🎢 支持一键部署本地网页版Demo
-- **[2023/07/20]** ⚡️ 支持低资源推理，最低5G显存运行多模态对话模型！
-- **[2023/07/18]** 🤗 VisCPM [Chat](https://huggingface.co/openbmb/VisCPM-Chat)[Paint](https://huggingface.co/openbmb/VisCPM-Paint) 已整合到Huggingface框架中
+- **[2023/08/23]** 📑 VisCPM论文发布：[Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf)，论文提供了更详细的实现细节和实验结果
+- **[2023/08/18]** ⤴️ [VisCPM-Chat-v1.1](#模型下载)版本发布，带来更强的细节理解和复杂推理能力！
+- **[2023/08/18]** 🛠️ 支持[微调](#模型微调)，让VisCPM更适配你的应用场景！
+- **[2023/07/20]** 🌐 发布VisCPM-[Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)和[VisCPM-Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) 的在线Demo，欢迎尝试！
+- **[2023/07/20]** 🎢 支持一键[部署本地网页版Demo](#demo部署)
+- **[2023/07/20]** ⚡️ 支持[低资源推理](#低资源推理)，最低5G显存运行多模态对话模型！
+- **[2023/07/18]** 🤗 [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat)和[VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint) 已整合到Huggingface框架中
 
 ## <img src="figures/chat.png" width="28px" /> VisCPM-Chat
-`VisCPM-Chat`支持面向图像进行中英双语多模态对话。该模型使用`Q-Former`作为视觉编码器，使用CPM-Bee（10B）作为语言基座模型，并通过语言建模训练目标融合视觉和语言模型。模型训练包括预训练和指令精调两阶段：
+`VisCPM-Chat`支持面向图像进行中英双语多模态对话。该模型使用`Muffin`视觉编码架构，使用CPM-Bee（10B）作为语言基座模型，并通过语言建模训练目标融合视觉和语言模型。模型训练包括预训练和指令精调两阶段：
 
-* 预训练：我们使用约100M高质量英文图文对数据对`VisCPM-Chat`进行了预训练，数据包括CC3M、CC12M、COCO、Visual Genome、Laion等。在预训练阶段，语言模型参数保持固定，仅更新`Q-Former`部分参数，以支持大规模视觉-语言表示的高效对齐。
+* 预训练：我们使用约100M高质量英文图文对数据对`VisCPM-Chat`进行了预训练，数据包括CC3M、CC12M、COCO、Visual Genome、Laion等。在预训练阶段，语言模型参数保持固定，仅更新视觉编码器的参数，以支持大规模视觉-语言表示的高效对齐。
 
 * 指令精调：我们采用[LLaVA-150K](https://llava-vl.github.io/)英文指令精调数据，并混合相应[翻译后的中文数据](https://huggingface.co/datasets/openbmb/llava_zh)对模型进行指令精调，以对齐模型多模态基础能力和用户使用意图。在指令精调阶段，我们更新全部模型参数，以提升指令精调数据的利用效率。有趣的是，我们发现即使仅采用英文指令数据进行指令精调，模型也可以理解中文问题，但仅能用英文回答。这表明模型的多语言多模态能力已经得到良好的泛化。在指令精调阶段进一步加入少量中文翻译数据，可以将模型回复语言和用户问题语言对齐。
 
-我们在[LLaVA标准英文测试集](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K)和翻译的[中文测试集](data/translated_LLaVA_qa90)对模型进行了评测，该评测基准考察模型在开放域对话、图像细节描述、复杂推理方面的表现，并使用GPT-4进行打分。可以观察到，`VisCPM-Chat`在中文多模态能力方面取得了最佳的平均性能，在通用域对话和复杂推理表现出色，同时也表现出了不错的英文多模态能力。我们提供了两个模型版本，分别为`VisCPM-Chat-balance`和`VisCPM-Chat-zhplus`，前者在英文和中文两种语言上的能力较为平衡，后者在中文能力上更加突出。两个模型在指令精调阶段使用的数据相同，`VisCPM-Chat-zhplus`在预训练阶段额外加入了20M清洗后的原生中文图文对数据和120M翻译到中文的图文对数据。
+我们在[LLaVA标准英文测试集](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K)和翻译的[中文测试集](data/translated_LLaVA_qa90)对模型进行了评测，该评测基准考察模型在开放域对话、图像细节描述、复杂推理方面的表现，并使用GPT-4进行打分。可以观察到，`VisCPM-Chat`在中文多模态能力方面取得了最佳的平均性能，在通用域对话和复杂推理表现出色，同时也表现出了不错的英文多模态能力。我们提供了两个模型版本，分别为`VisCPM-Chat-balance`和`VisCPM-Chat-zhplus`，前者在英文和中文两种语言上的能力较为平衡，后者在中文能力上更加突出。两个模型在指令精调阶段使用的数据相同，`VisCPM-Chat-zhplus`在预训练阶段额外加入了20M清洗后的原生中文图文对数据和120M翻译到中文的图文对数据。`VisCPM-Chat-v1.1`在指令精调阶段额外加入了UniMM-Chat多模态指令精调数据集。
 
 <table>
     <tr>
         <td align="center" rowspan="2" colspan="2">模型</td>
-        <td align="center" rowspan="2">语言模型<br>基座</td>
+        <td align="center" rowspan="2">语言模型基座</td>
         <td align="center" colspan="4">英文</td>
         <td align="center" colspan="4">中文</td>
     </tr>
     <tr>
-        <td align="center">多模对话</td>
-        <td align="center">细节描述</td>
+        <td align="center">对话</td>
+        <td align="center">精细描述</td>
         <td align="center">复杂推理</td>
         <td align="center">平均</td>
-        <td align="center">多模对话</td>
-        <td align="center">细节描述</td>
+        <td align="center">对话</td>
+        <td align="center">精细描述</td>
         <td align="center">复杂推理</td>
         <td align="center">平均</td>
     </tr>
@@ -96,7 +101,7 @@
         <td align="center">Vicuna-13B</td>
         <td align="center"><b><span style="color:#c00000;">89.5</span></b></td>
         <td align="center"><b><span style="color:#c00000;">70.4</span></b></td>
-        <td align="center"><b><span style="color:#c00000;">96.2</span></b></td>
+        <td align="center">96.2</td>
         <td align="center"><b><span style="color:#c00000;">85.6</span></b></td>
         <td align="center">-</td>
         <td align="center">-</td>
@@ -104,7 +109,7 @@
         <td align="center">-</td>
     </tr>
     <tr>
-        <td align="center" rowspan="5">中英双语</td>
+        <td align="center" rowspan="6">中英双语模型</td>
         <td align="center">mPLUG-Owl </td>
         <td align="center">LLaMA-7B</td>
         <td align="center">64.6</td>
@@ -124,12 +129,12 @@
         <td align="center">80.6</td>
         <td align="center">68.7</td>
         <td align="center">76.6</td>
-        <td align="center"><b><span style="color:#c00000;">87.8</span></b></td>
+        <td align="center">87.8</td>
         <td align="center">83.6</td>
         <td align="center">82.7</td>
     </tr>
     <tr>
-        <td align="center">Ziya-Visual</td>
+        <td align="center">Ziya-Visual </td>
         <td align="center">Ziya-LLaMA-13B-v1</td>
         <td align="center">82.7</td>
         <td align="center">69.9</td>
@@ -161,8 +166,20 @@
         <td align="center">79.6</td>
         <td align="center">90.3</td>
         <td align="center">81.4</td>
-        <td align="center"><b><span style="color:#c00000;">92.1</span></b></td>
-        <td align="center"><b><span style="color:#c00000;">88.2</span></b></td>
+        <td align="center">92.1</td>
+        <td align="center">88.2</td>
+    </tr>
+    <tr>
+        <td align="center">VisCPM-Chat-v1.1</td>
+        <td align="center">CPMBee-10B</td>
+        <td align="center">80.1</td>
+        <td align="center">67.1</td>
+        <td align="center"><b><span style="color:#c00000;">97.1</span></b></td>
+        <td align="center">81.5</td>
+        <td align="center">91.3</td>
+        <td align="center"><b><span style="color:#c00000;">90.7</span></b></td>
+        <td align="center"><b><span style="color:#c00000;">95.4</span></b></td>
+        <td align="center"><b><span style="color:#c00000;">92.5</span></b></td>
     </tr>
 </table>
 
@@ -254,12 +271,11 @@ pip install torch>=1.10
 pip install -r requirements.txt
 ```
 
-VisCPM目前需要单卡20GB以上的GPU运行，我们未来会支持更加节省显存的推理方式。
-
 ## 💡 使用
 ### 模型下载
 | 模型                   | 描述                         | 下载链接 |
 |----------------------|-------------------|------     |
+| VisCPM-Chat-v1.1     | 新版本多模态对话模型，强化了细节理解和复杂推理能力  |     [链接](https://huggingface.co/openbmb/VisCPM-Chat/blob/main/pytorch_model.v1.bin)    |
 | VisCPM-Chat-balance  | 中英文能力较为平衡的多模态对话模型  |     [链接](https://huggingface.co/openbmb/VisCPM-Chat/resolve/main/pytorch_model.bin)    |
 | VisCPM-Chat-zhplus   | 中文能力突出的多模态对话模型       |     [链接](https://huggingface.co/openbmb/VisCPM-Chat/resolve/main/pytorch_model.zhplus.bin)   |
 | VisCPM-Paint-balance | 中英文能力较为平衡的文生图模型     |      [链接](https://huggingface.co/openbmb/VisCPM-Paint/resolve/main/pytorch_model.balance.bin) |
@@ -276,7 +292,7 @@ VisCPM目前需要单卡20GB以上的GPU运行，我们未来会支持更加节�
 
 VisCPM-Chat可以通过几行代码实现多模态对话，我们在代码中默认开启了对输入图片的安全检查。
 ```shell
-# 如果您单卡显存不足40g，可以引入如下环境变量并将安全模块开关关闭。引入后显存占用约为5G，但推理所需时间会变长。此选项依赖bminf，需要安装bminf依赖库。
+# 如果您单卡显存不足40G，可以引入如下环境变量并将安全模块开关关闭。引入后显存占用约为5G，但推理所需时间会变长。此选项依赖BMInf，需要安装BMInf依赖库。
 export CUDA_MEMORY_CPMBEE_MAX=1g
 ```
 ```python
@@ -342,7 +358,7 @@ AI: “明月几时有，把酒问青天。” 这是苏轼的《水调歌头》
 
 生成上面图片的文本输入可参考[prompts.txt](data/prompts.txt)。
 ```shell
-# 如果您单卡显存不足40g，可以引入如下环境变量并将安全模块开关关闭。引入后显存占用约为17G，但推理所需时间会变长。此选项依赖bminf，需要安装bminf依赖库。
+# 如果您单卡显存不足40G，可以引入如下环境变量并将安全模块开关关闭。引入后显存占用约为17G，但推理所需时间会变长。此选项依赖BMInf，需要安装BMInf依赖库。
 export CUDA_MEMORY_CPMBEE_MAX=1g
 ```
 ```python
@@ -361,17 +377,33 @@ VisCPM-Paint目前使用中文模型进行重排序打分，如果输入英文�
 
 ### 低资源推理
 
-为了方便低资源用户使用，我们借助bminf工具支持更低的显存需求。首先安装bminf依赖`pip install bminf`，然后在命令行中指定`export CUDA_MEMORY_CPMBEE_MAX=1g`（具体数值可以根据个人需求设定），然后按照上述步骤进行推理，VisCPM-Chat最低显存占用可以降至5g，VisCPM-Paint最低显存占用可以降至17g。
+为了支持更加高效的低资源推理场景，我们借助[BMInf](https://github.com/OpenBMB/BMInf)工具支持更低的显存需求。首先安装BMInf依赖`pip install bminf`，然后在命令行中指定`export CUDA_MEMORY_CPMBEE_MAX=1g`（具体数值可以根据个人需求设定），然后按照上述步骤进行推理，VisCPM-Chat最低显存占用可以降至5G，VisCPM-Paint最低显存占用可以降至17G。
 
-### demo部署
+### Demo部署
 
-我们提供简易的基于gradio的网页版demo，首先安装gradio:`pip install gradio`，然后执行如下命令：
+我们提供简易的基于gradio的网页版Demo，首先安装gradio:`pip install gradio`，然后执行如下命令：
 ```shell
 git clone https://github.com/OpenBMB/VisCPM.git
 cd VisCPM
 python demo_chat.py # viscpm_chat demo, or
 python demo_paint.py # viscpm_paint demo
 ```
+
+### 模型微调
+为适应特定场景下的需求, 我们提供了VisCPM-Chat模型的微调代码，用户可以在私有数据上进行微调。微调代码位于`./finetune/ft_viscpm_chat`目录下，具体的微调代码使用方法如下：
+```shell
+# 获取数据集
+bash ./finetune/ft_viscpm_chat/get_llava150k_zh.sh
+# 模型微调, 注意修改其中的数据集与模型checkpoint路径
+bash ./finetune/ft_viscpm_chat/run_viscpm_chat_ft.sh
+# node: 8
+# batch_size: 8 * 1
+# 其他配置可参考'./finetune/ft_viscpm_chat/config/viscpm_chat_ft.json'与'./finetune/ft_viscpm_chat/run_viscpm_chat_ft.sh'
+```
+注: 
+- 微调代码中使用了deepspeed-0.9.1配置训练环境，配置方法可以参考此[链接](https://www.deepspeed.ai/getting-started/)。
+- 目前微调代码仅在linux系统下测试，如果您在其他系统配置下进行微调，可能需要修改部分代码。
+
 ## 🛡 安全
 
 ### 安全声明
@@ -391,7 +423,6 @@ CPM-Bee基座采用协议为[“通用模型许可协议-来源说明-宣传限�
 ## ✅ TODO
 
 - [ ] 支持模型量化功能，降低推理成本
-- [ ] 支持模型微调功能
 
 ## 🏫 机构
 
@@ -402,14 +433,14 @@ CPM-Bee基座采用协议为[“通用模型许可协议-来源说明-宣传限�
 - <img src="figures/zhihu.webp" width="28px"> [知乎](https://www.zhihu.com/)
 
 ## 引用
-
+如果我们的工作对你有帮助的话，请考虑引用以下论文
 ```bibtex
-@misc{thu-2023-viscpm,
-  author = {THUNLP, ModelBest, Zhihu},
-  title = {VisCPM: Chinese-English Bilingual Multi-modal Large Model Series},
-  year = {2023},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/OpenBMB/VisCPM}}
+@article{viscpm,
+    title={Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages}, 
+    author={Jinyi Hu and Yuan Yao and Chongyi Wang and Shan Wang and Yinxu Pan and Qianyu Chen and Tianyu Yu and Hanghao Wu and Yue Zhao and Haoye Zhang and Xu Han and Yankai Lin and Jiao Xue and Dahai Li and Zhiyuan Liu and Maosong Sun},
+    year={2023},
+    eprint={2308.12038},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
 }
 ```
