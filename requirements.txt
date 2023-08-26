@@ -17,3 +17,4 @@ tqdm==4.64.1
 transformers==4.28.0
 typing_extensions==4.5.0
 bminf
+cpm-live @ git+https://github.com/OpenBMB/CPM-Bee.git#egg=cpm-live&subdirectory=src
