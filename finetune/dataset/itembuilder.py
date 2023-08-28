@@ -126,7 +126,6 @@ class CPMBeeImageTextBuilder(ItemBuilder):
         try:
             assert text.strip() != ''
             image = Image.open(img_io).convert('RGB')
-            # todo@wangshan: filter
             if min(image.size) < self.min_resolution:
                 return None
             image = self.transform(image)

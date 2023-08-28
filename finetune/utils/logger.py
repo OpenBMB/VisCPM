@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
-# Copyright @2019 AI, ZHIHU Inc. (zhihu.com)
-#
-# @author: J.G. Chen <chenjianguo@zhihu.com>
-# @date: 12/05/2019
-#
+
 """ Init a logger with options from env variables.
 
 - set log level by ``LOG_LEVEL``, default: ``INFO``;

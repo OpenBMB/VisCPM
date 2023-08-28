@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#
-# Copyright @2023 AI, ZHIHU Inc. (zhihu.com)
-#
-# @author: wangchongyi <wangchongyi@zhihu.com>
-# @date: 2023/5/13
-#
+
 
 caption_en = [
     'Describe the image concisely',
