@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 from PIL import Image, PngImagePlugin
 
-from cpm_live.tokenizers import CPMBeeTokenizer
+from VisCPM.cpm_tokenizers import CPMBeeTokenizer
 
 from finetune.dataset.bee import convert_data_to_id
 from finetune.utils.prompts import caption_zh, caption_en
