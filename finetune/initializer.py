@@ -11,7 +11,9 @@ import numpy as np
 from datetime import datetime
 from timm import create_model
 
-from cpm_live.tokenizers import CPMBeeTokenizer
+from VisCPM.cpm_tokenizers import CPMBeeTokenizer
+
+
 
 from finetune.utils import utils
 from finetune.utils.logger import init_logger

@@ -21,7 +21,8 @@ import importlib.util
 import types
 import random
 
-from cpm_live.tokenizers import CPMBeeTokenizer
+from VisCPM.cpm_tokenizers import CPMBeeTokenizer
+
 
 
 CPMBeeInputType = Union[str, Dict[str, "CPMBeeInputType"]]
