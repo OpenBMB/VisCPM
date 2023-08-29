@@ -52,7 +52,7 @@
 
 * 指令精调：我们采用[LLaVA-150K](https://llava-vl.github.io/)英文指令精调数据，并混合相应[翻译后的中文数据](https://huggingface.co/datasets/openbmb/llava_zh)对模型进行指令精调，以对齐模型多模态基础能力和用户使用意图。在指令精调阶段，我们更新全部模型参数，以提升指令精调数据的利用效率。有趣的是，我们发现即使仅采用英文指令数据进行指令精调，模型也可以理解中文问题，但仅能用英文回答。这表明模型的多语言多模态能力已经得到良好的泛化。在指令精调阶段进一步加入少量中文翻译数据，可以将模型回复语言和用户问题语言对齐。
 
-我们在[LLaVA标准英文测试集](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K)和翻译的[中文测试集](data/translated_LLaVA_qa90)对模型进行了评测，该评测基准考察模型在开放域对话、图像细节描述、复杂推理方面的表现，并使用GPT-4进行打分。可以观察到，`VisCPM-Chat`在中文多模态能力方面取得了最佳的平均性能，在通用域对话和复杂推理表现出色，同时也表现出了不错的英文多模态能力。我们提供了两个模型版本，分别为`VisCPM-Chat-balance`和`VisCPM-Chat-zhplus`，前者在英文和中文两种语言上的能力较为平衡，后者在中文能力上更加突出。两个模型在指令精调阶段使用的数据相同，`VisCPM-Chat-zhplus`在预训练阶段额外加入了20M清洗后的原生中文图文对数据和120M翻译到中文的图文对数据。`VisCPM-Chat-v1.1`在指令精调阶段额外加入了UniMM-Chat多模态指令精调数据集。
+我们在[LLaVA标准英文测试集](https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K)和翻译的[中文测试集](data/translated_LLaVA_qa90)对模型进行了评测，该评测基准考察模型在开放域对话、图像细节描述、复杂推理方面的表现，并使用GPT-4进行打分。可以观察到，`VisCPM-Chat`在中文多模态能力方面取得了最佳的平均性能，在通用域对话和复杂推理表现出色，同时也表现出了不错的英文多模态能力。我们提供了两个模型版本，分别为`VisCPM-Chat-balance`和`VisCPM-Chat-zhplus`，前者在英文和中文两种语言上的能力较为平衡，后者在中文能力上更加突出。两个模型在指令精调阶段使用的数据相同，`VisCPM-Chat-zhplus`在预训练阶段额外加入了20M清洗后的原生中文图文对数据和120M翻译到中文的图文对数据。`VisCPM-Chat-v1.1`在指令精调阶段额外加入了[UniMM-Chat](https://huggingface.co/datasets/Yirany/UniMM-Chat)多模态指令精调数据集。
 
 <table>
     <tr>
