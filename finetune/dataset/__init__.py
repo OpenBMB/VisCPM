@@ -1,1 +1,1 @@
-from VisCPM.dataset.itembuilder import CPMBeeImageTextBuilder
+from finetune.dataset.itembuilder import CPMBeeImageTextBuilder
