@@ -34,6 +34,7 @@
 ## 📰 Update News
 `VisCPM`` is continuously updating. We have provided functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
 
+- **[2023/09/06]** 🔌 VisCPM-Chat API Released! Now you can easily use the VisCPM-Chat model directly through the API. Check out the [API Usage Guide](#API-Usage-Guide) for more details
 - **[2023/08/23]** 📑 We release the paper of VisCPM: [Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf). More impletation details and experimental results are presented in the paper.
 - **[2023/08/18]** ⤴️ We upgrade to [VisCPM-Chat-v1.1](#model-zoo), with stronger detail understanding and complex reasoning ability!
 - **[2023/08/18]** 🛠️ We support [fine-tuning](#Fine-Tuning) to make VisCPM more suitable for your application scenarios!
@@ -280,6 +281,8 @@ pip install -r requirements.txt
 ### VisCPM-Chat
 After downloading the checkpoints, please refer to the following codes to run `VisCPM-Chat` (replace `'/path/to/checkpoint'` with actually path of downloaded checkpoint).
 
+
+
 #### Single-turn Conversation
 <div align="center">
 <img src="figures/vlu_case1.png" width="660px">
@@ -351,6 +354,21 @@ User: On which festival was this image taken?
 AI: This image was taken during the Mid-Autumn Festival, which is the night of the full moon in the traditional Chinese festival.
 User: What ancient poem can you use to describe this painting?
 AI: "When did the bright moon first exist? With a cup of wine in my hand, I ask the blue sky." This is a line from Su Shi's "Shui Diao Ge Tou", which can't be more appropriate to describe this picture: On the night of Mid-Autumn Festival, the moon hangs high in the sky among them, an ancient building is bathed in moonlight, creating a peaceful atmosphere.
+```
+#### API Usage Guide
+We offer an API, and you can easily experience VisCPM-Chat with the following code. Supported input formats and usage of the API are as follows:
+```python
+import requests
+import base64
+
+url = "http://34.143.180.202:3389/viscpm"
+resp = requests.post(url,json={
+    # need to modify
+    "image": base64.b64encode(open("path/to/image", "rb").read()).decode(),
+    "question": "Describe this image",
+})
+resp = resp.json()
+print(resp)
 ```
 
 
