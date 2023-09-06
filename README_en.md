@@ -34,6 +34,7 @@
 ## 📰 Update News
 `VisCPM`` is continuously updating. We have provided functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
 
+- **[2023/09/06]** 🔌 VisCPM-Chat API Released! Now you can easily use the VisCPM-Chat model directly through the API. Check out the [API Usage Guide](#API-Usage-Guide) for more details
 - **[2023/08/23]** 📑 We release the paper of VisCPM: [Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf). More impletation details and experimental results are presented in the paper.
 - **[2023/08/18]** ⤴️ We upgrade to [VisCPM-Chat-v1.1](#model-zoo), with stronger detail understanding and complex reasoning ability!
 - **[2023/08/18]** 🛠️ We support [fine-tuning](#Fine-Tuning) to make VisCPM more suitable for your application scenarios!
@@ -279,6 +280,25 @@ pip install -r requirements.txt
 | VisCPM-Paint-zhplus  | Text-to-image model with a strong emphasis on Chinese proficiency          |      [download](https://huggingface.co/openbmb/VisCPM-Paint/resolve/main/viscpm_paint_zhplus_checkpoint.pt)  |
 ### VisCPM-Chat
 After downloading the checkpoints, please refer to the following codes to run `VisCPM-Chat` (replace `'/path/to/checkpoint'` with actually path of downloaded checkpoint).
+
+#### API Usage Guide
+We offer an API, and you can easily experience VisCPM-Chat with the following code. Supported input formats and usage of the API are as follows:
+```python
+import requests
+import base64
+
+url = "http://34.143.180.202:3389/viscpm"
+resp = requests.post(url, headers={
+    "X-Model-Best-Model": "viscpm-chat-balance",
+    "X-Model-Best-Trace-ID": "test-trace",
+}, json={
+    # need to modify
+    "image": base64.b64encode(open("path/to/image", "rb").read()).decode(),
+    "question": "Describe this image",
+})
+resp = resp.json()
+print(resp)
+```
 
 #### Single-turn Conversation
 <div align="center">

@@ -37,6 +37,7 @@
 ## 📰 更新信息
 `VisCPM`在持续升级中，近期我们支持了低资源推理、网页版部署等功能，并提供在线Demo供大家使用，未来我们会提供能力升级的更高版本的模型，欢迎大家持续关注！
 
+- **[2023/09/06]** 🔌 VisCPM-Chat API 发布！现在您可以直接通过API轻松地使用VisCPM-Chat模型了。查看[API使用指南](#API使用指南)以了解更多详情。
 - **[2023/08/23]** 📑 VisCPM论文发布：[Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf)，论文提供了更详细的实现细节和实验结果
 - **[2023/08/18]** ⤴️ [VisCPM-Chat-v1.1](#模型下载)版本发布，带来更强的细节理解和复杂推理能力！
 - **[2023/08/18]** 🛠️ 支持[微调](#模型微调)，让VisCPM更适配你的应用场景！
@@ -281,8 +282,28 @@ pip install -r requirements.txt
 | VisCPM-Paint-balance | 中英文能力较为平衡的文生图模型     |      [链接](https://huggingface.co/openbmb/VisCPM-Paint/resolve/main/pytorch_model.balance.bin) |
 | VisCPM-Paint-zhplus  | 中文能力突出的文生图模型          |      [链接](https://huggingface.co/openbmb/VisCPM-Paint/resolve/main/pytorch_model.bin)  |
 
+
 ### VisCPM-Chat
 在下载模型权重后，可以使用如下代码运行VisCPM-Chat（`'/path/to/checkpoint'`改为模型存放路径）
+
+#### API使用指南
+我们提供了API接口，可以通过如下代码轻松体验VisCPM-Chat。API接口支持的输入格式和使用方式如下：
+```python
+import requests
+import base64
+
+url = "http://34.143.180.202:3389/viscpm"
+resp = requests.post(url, headers={
+    "X-Model-Best-Model": "viscpm-chat-balance",
+    "X-Model-Best-Trace-ID": "test-trace",
+}, json={
+    # need to modify
+    "image": base64.b64encode(open("path/to/image", "rb").read()).decode(),
+    "question": "描述一下这张图片",
+})
+resp = resp.json()
+print(resp)
+```
 
 #### 单轮对话
 
