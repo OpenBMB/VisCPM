@@ -281,8 +281,6 @@ pip install -r requirements.txt
 ### VisCPM-Chat
 After downloading the checkpoints, please refer to the following codes to run `VisCPM-Chat` (replace `'/path/to/checkpoint'` with actually path of downloaded checkpoint).
 
-
-
 #### Single-turn Conversation
 <div align="center">
 <img src="figures/vlu_case1.png" width="660px">

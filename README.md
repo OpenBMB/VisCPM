@@ -286,7 +286,6 @@ pip install -r requirements.txt
 ### VisCPM-Chat
 在下载模型权重后，可以使用如下代码运行VisCPM-Chat（`'/path/to/checkpoint'`改为模型存放路径）
 
-
 #### 单轮对话
 
 <div align="center">
