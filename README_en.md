@@ -281,25 +281,6 @@ pip install -r requirements.txt
 ### VisCPM-Chat
 After downloading the checkpoints, please refer to the following codes to run `VisCPM-Chat` (replace `'/path/to/checkpoint'` with actually path of downloaded checkpoint).
 
-#### API Usage Guide
-We offer an API, and you can easily experience VisCPM-Chat with the following code. Supported input formats and usage of the API are as follows:
-```python
-import requests
-import base64
-
-url = "http://34.143.180.202:3389/viscpm"
-resp = requests.post(url, headers={
-    "X-Model-Best-Model": "viscpm-chat-balance",
-    "X-Model-Best-Trace-ID": "test-trace",
-}, json={
-    # need to modify
-    "image": base64.b64encode(open("path/to/image", "rb").read()).decode(),
-    "question": "Describe this image",
-})
-resp = resp.json()
-print(resp)
-```
-
 #### Single-turn Conversation
 <div align="center">
 <img src="figures/vlu_case1.png" width="660px">
@@ -371,6 +352,21 @@ User: On which festival was this image taken?
 AI: This image was taken during the Mid-Autumn Festival, which is the night of the full moon in the traditional Chinese festival.
 User: What ancient poem can you use to describe this painting?
 AI: "When did the bright moon first exist? With a cup of wine in my hand, I ask the blue sky." This is a line from Su Shi's "Shui Diao Ge Tou", which can't be more appropriate to describe this picture: On the night of Mid-Autumn Festival, the moon hangs high in the sky among them, an ancient building is bathed in moonlight, creating a peaceful atmosphere.
+```
+#### API Usage Guide
+We offer an API, and you can easily experience VisCPM-Chat with the following code. Supported input formats and usage of the API are as follows:
+```python
+import requests
+import base64
+
+url = "http://34.143.180.202:3389/viscpm"
+resp = requests.post(url,json={
+    # need to modify
+    "image": base64.b64encode(open("path/to/image", "rb").read()).decode(),
+    "question": "Describe this image",
+})
+resp = resp.json()
+print(resp)
 ```
 
 

@@ -286,25 +286,6 @@ pip install -r requirements.txt
 ### VisCPM-Chat
 在下载模型权重后，可以使用如下代码运行VisCPM-Chat（`'/path/to/checkpoint'`改为模型存放路径）
 
-#### API使用指南
-我们提供了API接口，可以通过如下代码轻松体验VisCPM-Chat。API接口支持的输入格式和使用方式如下：
-```python
-import requests
-import base64
-
-url = "http://34.143.180.202:3389/viscpm"
-resp = requests.post(url, headers={
-    "X-Model-Best-Model": "viscpm-chat-balance",
-    "X-Model-Best-Trace-ID": "test-trace",
-}, json={
-    # need to modify
-    "image": base64.b64encode(open("path/to/image", "rb").read()).decode(),
-    "question": "描述一下这张图片",
-})
-resp = resp.json()
-print(resp)
-```
-
 #### 单轮对话
 
 <div align="center">
@@ -368,6 +349,23 @@ User: 这幅图像是在哪个节日拍摄的？
 AI: 这幅图像是在中秋节拍摄的， 也就是中国传统节日中的月圆之夜。
 User: 你能用什么古诗描述这幅画？
 AI: “明月几时有，把酒问青天。” 这是苏轼的《水调歌头》中的一句诗，用来形容这幅图片再贴切不过了：在中秋之夜，月亮高高地挂在天空中，一座古老的建筑沐浴着月光，营造出一种宁静祥和的气氛。
+```
+
+
+#### API使用指南
+我们提供了API接口，可以通过如下代码轻松体验VisCPM-Chat。API接口支持的输入格式和使用方式如下：
+```python
+import requests
+import base64
+
+url = "http://34.143.180.202:3389/viscpm"
+resp = requests.post(url, json={
+    # need to modify
+    "image": base64.b64encode(open("path/to/image", "rb").read()).decode(),
+    "question": "描述一下这张图片",
+})
+resp = resp.json()
+print(resp)
 ```
 
 ### VisCPM-Paint
