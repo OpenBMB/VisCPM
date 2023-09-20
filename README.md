@@ -110,7 +110,7 @@
         <td align="center">-</td>
     </tr>
     <tr>
-        <td align="center" rowspan="6">中英双语模型</td>
+        <td align="center" rowspan="7">中英双语模型</td>
         <td align="center">mPLUG-Owl </td>
         <td align="center">LLaMA-7B</td>
         <td align="center">64.6</td>
@@ -145,6 +145,18 @@
         <td align="center">74.7</td>
         <td align="center">82.4</td>
         <td align="center">80.8</td>
+    </tr>
+    <tr>
+        <td align="center">Qwen-VL </td>
+        <td align="center">Qwen-7B</td>
+        <td align="center">82.4</td>
+        <td align="center">72.6</td>
+        <td align="center">91.9</td>
+        <td align="center">83.8</td>
+        <td align="center">82.3</td>
+        <td align="center">93.4</td>
+        <td align="center">89.5</td>
+        <td align="center">88.2</td>
     </tr>
     <tr>
         <td align="center">VisCPM-Chat-balance</td>

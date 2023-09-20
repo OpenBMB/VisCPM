@@ -14,7 +14,6 @@ from typing import Optional, List
 
 from VisCPM.models import SDWrapper, VLG_CPMBee, CPMBeeConfig, CPMBeeTorch
 from VisCPM.utils.utils import CPMBeeCollater, convert_data_to_id
-import bminf
 
 
 def grid_image(images: List[Image.Image]) -> Image.Image:
@@ -46,6 +45,7 @@ class VisCPMPaint:
                 memory_limit = None
                 print(f'environment CUDA_MEMORY_CPMBEE_MAX={limit} parse error')
 
+            import bminf
             self.llm = bminf.wrapper(self.llm, memory_limit=memory_limit)
             self.sd.to(self.device)
         else:

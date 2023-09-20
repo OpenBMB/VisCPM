@@ -1,7 +1,7 @@
 <div align="center">
 
 # VisCPM
-**Chinese-English bilingual large multi-modal model series based on CPM basic model**
+**Chinese-English bilingual large multi-modal model series**
 <p align="center">
   <a href="#-viscpm-chat">Multimodal Conversation Model VisCPM-Chat</a> •
   <a href="#-viscpm-paint">Text-to-image Model VisCPM-Paint</a> •
@@ -107,7 +107,7 @@ We evaluate the model on the standard [LLaVA English benchmark](https://huggingf
         <td align="center">-</td>
     </tr>
     <tr>
-        <td align="center" rowspan="6">En-Zh Bilingual Model</td>
+        <td align="center" rowspan="7">En-Zh Bilingual Model</td>
         <td align="center">mPLUG-Owl </td>
         <td align="center">LLaMA-7B</td>
         <td align="center">64.6</td>
@@ -142,6 +142,18 @@ We evaluate the model on the standard [LLaVA English benchmark](https://huggingf
         <td align="center">74.7</td>
         <td align="center">82.4</td>
         <td align="center">80.8</td>
+    </tr>
+    <tr>
+        <td align="center">Qwen-VL </td>
+        <td align="center">Qwen-7B</td>
+        <td align="center">82.4</td>
+        <td align="center">72.6</td>
+        <td align="center">91.9</td>
+        <td align="center">83.8</td>
+        <td align="center">82.3</td>
+        <td align="center">93.4</td>
+        <td align="center">89.5</td>
+        <td align="center">88.2</td>
     </tr>
     <tr>
         <td align="center">VisCPM-Chat-balance</td>

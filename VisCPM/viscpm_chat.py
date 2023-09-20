@@ -14,7 +14,6 @@ from VisCPM.generation.vllm_bee import VLLMCPMBeeBeamSearch
 from VisCPM.models import VLU_CPMBee
 from VisCPM.models.cpmbee import CPMBeeConfig, CPMBeeTorch
 from VisCPM.utils import utils
-import bminf
 
 file_path = os.path.dirname(__file__)
 
@@ -65,7 +64,8 @@ class VisCPMChat(object):
             except:
                 memory_limit = None
                 print(f'environment CUDA_MEMORY_CPMBEE_MAX={limit} parse error')
-
+            
+            import bminf
             self.cpm_model = bminf.wrapper(self.cpm_model, memory_limit=memory_limit)
             self.vlu_cpmbee.query.data = self.vlu_cpmbee.query.data.to(self.device)
             self.vlu_cpmbee.mapping.to(self.device)
