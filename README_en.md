@@ -98,7 +98,7 @@ We evaluate the model on the standard [LLaVA English benchmark](https://huggingf
         <td align="center">LLaVA</td>
         <td align="center">Vicuna-13B</td>
         <td align="center"><b><span style="color:#c00000;">89.5</span></b></td>
-        <td align="center"><b><span style="color:#c00000;">70.4</span></b></td>
+        <td align="center">70.4</td>
         <td align="center">96.2</td>
         <td align="center"><b><span style="color:#c00000;">85.6</span></b></td>
         <td align="center">-</td>
@@ -147,11 +147,11 @@ We evaluate the model on the standard [LLaVA English benchmark](https://huggingf
         <td align="center">Qwen-VL </td>
         <td align="center">Qwen-7B</td>
         <td align="center">82.4</td>
-        <td align="center">72.6</td>
+        <td align="center"><b><span style="color:#c00000;">72.6</span></b></td>
         <td align="center">91.9</td>
         <td align="center">83.8</td>
         <td align="center">82.3</td>
-        <td align="center">93.4</td>
+        <td align="center"><b><span style="color:#c00000;">93.4</span></b></td>
         <td align="center">89.5</td>
         <td align="center">88.2</td>
     </tr>
@@ -187,7 +187,7 @@ We evaluate the model on the standard [LLaVA English benchmark](https://huggingf
         <td align="center"><b><span style="color:#c00000;">97.1</span></b></td>
         <td align="center">81.5</td>
         <td align="center">91.3</td>
-        <td align="center"><b><span style="color:#c00000;">90.7</span></b></td>
+        <td align="center">90.7</td>
         <td align="center"><b><span style="color:#c00000;">95.4</span></b></td>
         <td align="center"><b><span style="color:#c00000;">92.5</span></b></td>
     </tr>
