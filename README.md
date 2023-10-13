@@ -23,7 +23,7 @@
 
 **`VisCPM`** is a family of open-source large multimodal models, which support multimodal conversational capabilities (`VisCPM-Chat` model) and text-to-image generation capabilities (`VisCPM-Paint` model) in both Chinese and English, achieving state-of-the-art performance among Chinese open-source multimodal models. VisCPM is trained based on the large language model [CPM-Bee](https://github.com/OpenBMB/CPM-Bee) with 10B parameters, fusing visual encoder (Muffin) and visual decoder (Diffusion-UNet) to support visual inputs and outputs. Thanks to the good bilingual capability of CPM-Bee, `VisCPM` can be pre-trained with English multimodal data only and well generalize to achieve promising Chinese multimodal capabilities.
 
-**`VisCPM`** 是一个开源的多模态大模型系列，支持中英双语的多模态对话能力（`VisCPM-Chat`模型）和文到图生成能力（`VisCPM-Paint`模型），在中文多模态开源模型中达到最佳水平。VisCPM基于百亿参数量语言大模型[CPM-Bee](https://github.com/OpenBMB/CPM-Bee)（10B）训练，融合视觉编码器（Muffin）和视觉解码器（Diffusion-UNet）以支持视觉信号的输入和输出。得益于CPM-Bee基座优秀的双语能力，`VisCPM`可以仅通过英文多模态数据预训练，泛化实现优秀的中文多模态能力。
+**`VisCPM`** 是一个开源的多模态大模型系列，支持中英双语的多模态对话能力（`VisCPM-Chat`模型）和文到图生成能力（`VisCPM-Paint`模型），在中文多模态开源模型中达到最佳水平。VisCPM基于百亿参数量语言大模型[CPM-Bee](https://github.com/OpenBMB/CPM-Bee)（10B）训练，融合视觉编码器[Muffin](https://github.com/thunlp/Muffin)和视觉解码器[Diffusion-UNet](https://github.com/CompVis/stable-diffusion)以支持视觉信号的输入和输出。得益于CPM-Bee基座优秀的双语能力，`VisCPM`可以仅通过英文多模态数据预训练，泛化实现优秀的中文多模态能力。
 
 - **👐 开源使用**：VisCPM可以自由被用于个人和研究用途。我们希望通过开源VisCPM模型系列，推动多模态大模型开源社区和相关研究的发展。
 - **🌟 涵盖图文双向生成**：VisCPM模型系列较为全面地支持了图文多模态能力，涵盖多模态对话（图到文生成）能力和文到图生成能力。
@@ -473,5 +473,12 @@ CPM-Bee基座采用协议为[“通用模型许可协议-来源说明-宣传限�
     eprint={2308.12038},
     archivePrefix={arXiv},
     primaryClass={cs.CL}
+}
+
+@article{muffin,
+      title={Reformulating Vision-Language Foundation Models and Datasets Towards Universal Multimodal Assistants},
+      author={Tianyu Yu, Jinyi Hu, Yuan Yao, Haoye Zhang, Yue Zhao, Chongyi Wang, Shan Wang, Yinxv Pan, Jiao Xue, Dahai Li, Zhiyuan Liu, Hai-Tao Zheng, Maosong Sun},
+      publisher={arXiv:2310.00653},
+      year={2023},
 }
 ```
