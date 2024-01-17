@@ -12,8 +12,7 @@
   <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a> •
   <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a> •
   <a href="https://huggingface.co/openbmb/VisCPM-Chat"> VisCPM-Chat🤗 </a> •
-  <a href="https://huggingface.co/openbmb/VisCPM-Paint"> VisCPM-Paint🤗 </a> •
-  <a href="figures/wechat.md">加入微信讨论群</a>
+  <a href="https://huggingface.co/openbmb/VisCPM-Paint"> VisCPM-Paint🤗 </a>
 </p>
 
 <p align="center">
@@ -35,8 +34,9 @@
 </div>
 
 ## 📰 更新信息
-`VisCPM`在持续升级中，近期我们支持了低资源推理、网页版部署等功能，并提供在线Demo供大家使用，未来我们会提供能力升级的更高版本的模型，欢迎大家持续关注！
+`VisCPM`在持续升级中，我们支持了低资源推理、网页版部署等功能，并提供在线Demo供大家使用，未来我们会提供能力升级的更高版本的模型，欢迎大家持续关注！
 
+- **[2024/01/16]** 🎉 [VisCPM论文](https://arxiv.org/pdf/2308.12038.pdf)被**ICLR 2024**接收，并被选为**spotlight（top 5%）**！
 - **[2023/09/06]** 🔌 VisCPM-Chat API 发布！现在您可以直接通过API轻松地使用VisCPM-Chat模型了。查看[API使用指南](#API使用指南)以了解更多详情。
 - **[2023/08/23]** 📑 VisCPM论文发布：[Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf)，论文提供了更详细的实现细节和实验结果
 - **[2023/08/18]** ⤴️ [VisCPM-Chat-v1.1](#模型下载)版本发布，带来更强的细节理解和复杂推理能力！

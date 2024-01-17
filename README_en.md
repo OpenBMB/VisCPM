@@ -12,8 +12,7 @@
   <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a> •
   <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a> •
   <a href="https://huggingface.co/openbmb/VisCPM-Chat"> VisCPM-Chat🤗 </a> •
-  <a href="https://huggingface.co/openbmb/VisCPM-Paint"> VisCPM-Paint🤗 </a> •
-  <a href="figures/wechat.md">Join Wechat Group</a>
+  <a href="https://huggingface.co/openbmb/VisCPM-Paint"> VisCPM-Paint🤗 </a>
 </p>
 
 <p align="center">
@@ -34,6 +33,7 @@
 ## 📰 Update News
 `VisCPM`` is continuously updating. We have provided functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
 
+- **[2024/01/16]** 🎉 [The paper of VisCPM](https://arxiv.org/pdf/2308.12038.pdf) is accepted by **ICLR 2024** as **spotlight (top 5%)**！
 - **[2023/09/06]** 🔌 VisCPM-Chat API Released! Now you can easily use the VisCPM-Chat model directly through the API. Check out the [API Usage Guide](#API-Usage-Guide) for more details
 - **[2023/08/23]** 📑 We release the paper of VisCPM: [Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf). More impletation details and experimental results are presented in the paper.
 - **[2023/08/18]** ⤴️ We upgrade to [VisCPM-Chat-v1.1](#model-zoo), with stronger detail understanding and complex reasoning ability!
