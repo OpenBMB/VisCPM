@@ -31,8 +31,9 @@
 </div>
 
 ## 📰 Update News
-`VisCPM`` is continuously updating. We have provided functions such as low-resource reasoning, easy-to-use web deployment, and provide online demos for everyone. In the future, we will provide new versions of models with upgraded capabilities. Please continue to pay attention!
+`VisCPM` is continuously updating. We have provided functions such as low-resource reasoning, easy-to-use web deployment. We have provide new versions with upgraded capabilities, [OmniLMM](https://github.com/OpenBMB/OmniLMM). Please continue to pay attention!
 
+- **[2024/02/02]** 🚀 Welcome to follow our latest release of the [OmniLMM](https://github.com/OpenBMB/OmniLMM) large multimodal model! Among them, [OmniLMM-3B](https://huggingface.co/openbmb/MiniCPM-V) is a bilingual multimodal dialogue model in Chinese and English, trained based on the bilingual large model [MiniCPM-2.4B](https://github.com/OpenBMB/MiniCPM/) and the SigLip-400M visual encoder, using the same training process as VisCPM-Chat. It can be deployed on terminal devices and possesses advanced multimodal dialogue capabilities; [OmniLMM-13B](https://huggingface.co/openbmb/OmniLMM-12B/) is an English multimodal model, initially trained based on EVA02-5B and Zephyr-7B-β, and compared to other models of the same scale, it demonstrates superior performance in multiple benchmark tests.
 - **[2024/01/16]** 🎉 [The paper of VisCPM](https://arxiv.org/pdf/2308.12038.pdf) is accepted by **ICLR 2024** as **spotlight (top 5%)**！
 - **[2023/09/06]** 🔌 VisCPM-Chat API Released! Now you can easily use the VisCPM-Chat model directly through the API. Check out the [API Usage Guide](#API-Usage-Guide) for more details
 - **[2023/08/23]** 📑 We release the paper of VisCPM: [Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf). More impletation details and experimental results are presented in the paper.
