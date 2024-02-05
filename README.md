@@ -9,7 +9,7 @@
   <a href="https://arxiv.org/pdf/2308.12038.pdf">论文</a>
 </p>
 <p>
-  <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a> •
+  <a href="http://120.92.209.146/">VisCPM-Chat Demo</a> •
   <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a> •
   <a href="https://huggingface.co/openbmb/VisCPM-Chat"> VisCPM-Chat🤗 </a> •
   <a href="https://huggingface.co/openbmb/VisCPM-Paint"> VisCPM-Paint🤗 </a>
@@ -42,7 +42,7 @@
 - **[2023/08/23]** 📑 VisCPM论文发布：[Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf)，论文提供了更详细的实现细节和实验结果
 - **[2023/08/18]** ⤴️ [VisCPM-Chat-v1.1](#模型下载)版本发布，带来更强的细节理解和复杂推理能力！
 - **[2023/08/18]** 🛠️ 支持[微调](#模型微调)，让VisCPM更适配你的应用场景！
-- **[2023/07/20]** 🌐 发布[VisCPM-Chat](https://huggingface.co/spaces/openbmb/viscpm-chat)和[VisCPM-Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) 的在线Demo，欢迎尝试！
+- **[2023/07/20]** 🌐 发布[VisCPM-Chat](http://120.92.209.146/)和[VisCPM-Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) 的在线Demo，欢迎尝试！
 - **[2023/07/20]** 🎢 支持一键[部署本地网页版Demo](#demo部署)
 - **[2023/07/20]** ⚡️ 支持[低资源推理](#低资源推理)，最低5G显存运行多模态对话模型！
 - **[2023/07/18]** 🤗 [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat)和[VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint) 已整合到Huggingface框架中

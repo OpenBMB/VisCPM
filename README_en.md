@@ -9,7 +9,7 @@
   <a href="https://arxiv.org/pdf/2308.12038.pdf">Paper</a>
 </p>
 <p>
-  <a href="https://huggingface.co/spaces/openbmb/viscpm-chat">VisCPM-Chat Demo</a> •
+  <a href="http://120.92.209.146/">VisCPM-Chat Demo</a> •
   <a href="https://huggingface.co/spaces/openbmb/viscpm-paint">VisCPM-Paint Demo</a> •
   <a href="https://huggingface.co/openbmb/VisCPM-Chat"> VisCPM-Chat🤗 </a> •
   <a href="https://huggingface.co/openbmb/VisCPM-Paint"> VisCPM-Paint🤗 </a>
@@ -39,7 +39,7 @@
 - **[2023/08/23]** 📑 We release the paper of VisCPM: [Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages](https://arxiv.org/pdf/2308.12038.pdf). More impletation details and experimental results are presented in the paper.
 - **[2023/08/18]** ⤴️ We upgrade to [VisCPM-Chat-v1.1](#model-zoo), with stronger detail understanding and complex reasoning ability!
 - **[2023/08/18]** 🛠️ We support [fine-tuning](#Fine-Tuning) to make VisCPM more suitable for your application scenarios!
-- **[2023/07/20]** 🌐 We release [VisCPM-Chat](https://huggingface.co/spaces/openbmb/viscpm-chat) and [VisCPM-Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) online demo!
+- **[2023/07/20]** 🌐 We release [VisCPM-Chat](http://120.92.209.146/) and [VisCPM-Paint](https://huggingface.co/spaces/openbmb/viscpm-paint) online demo!
 - **[2023/07/20]** 🎢 We provide one-click [deployment of local web version demo](#demo-deployment)!
 - **[2023/07/20]** ⚡️ We support [low-resource inference](#low-resource-inference), with minimum 5G GPU memory cost to run VisCPM-Chat!
 - **[2023/07/18]** 🤗 [VisCPM-Chat](https://huggingface.co/openbmb/VisCPM-Chat) and [VisCPM-Paint](https://huggingface.co/openbmb/VisCPM-Paint) have been integrated into the huggingface framework!
