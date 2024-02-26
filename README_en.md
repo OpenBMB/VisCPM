@@ -474,16 +474,14 @@ Please consider citing the following papers if our work is helpful to you
 @article{viscpm,
     title={Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages}, 
     author={Jinyi Hu and Yuan Yao and Chongyi Wang and Shan Wang and Yinxu Pan and Qianyu Chen and Tianyu Yu and Hanghao Wu and Yue Zhao and Haoye Zhang and Xu Han and Yankai Lin and Jiao Xue and Dahai Li and Zhiyuan Liu and Maosong Sun},
-    year={2023},
-    eprint={2308.12038},
-    archivePrefix={arXiv},
-    primaryClass={cs.CL}
+    journal={arXiv preprint arXiv:2308.12038},
+    year={2023}
 }
 
 @article{muffin,
       title={Reformulating Vision-Language Foundation Models and Datasets Towards Universal Multimodal Assistants},
       author={Tianyu Yu, Jinyi Hu, Yuan Yao, Haoye Zhang, Yue Zhao, Chongyi Wang, Shan Wang, Yinxv Pan, Jiao Xue, Dahai Li, Zhiyuan Liu, Hai-Tao Zheng, Maosong Sun},
-      publisher={arXiv:2310.00653},
-      year={2023},
+      journal={arXiv preprint arXiv:2310.00653},
+      year={2023}
 }
 ```
