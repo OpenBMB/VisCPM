@@ -35,7 +35,7 @@
 
 ## 📰 更新信息
 `VisCPM`在持续升级中，我们支持了低资源推理、网页版部署等功能，并提供了能力升级的更高版本的模型[OmniLMM](https://github.com/OpenBMB/OmniLMM)，欢迎大家持续关注！
-
+- **[2024/04/17]** 🚀 欢迎关注我们最新发布的[MiniCPM-V 2.0](https://github.com/OpenBMB/MiniCPM-V)端侧多模态大模型，具备领先的光学字符识别（OCR）和多模态理解能力，在综合性OCR能力评测基准OCRBench上达到开源模型最佳水平，甚至在场景文字理解方面实现接近Gemini Pro的性能。
 - **[2024/02/02]** 🚀 欢迎关注我们最新发布的[OmniLMM](https://github.com/OpenBMB/OmniLMM)多模态大模型！其中[OmniLMM-3B](https://huggingface.co/openbmb/MiniCPM-V)为中英双语多模态对话模型，基于中英双语大模型[MiniCPM-2.4B](https://github.com/OpenBMB/MiniCPM/)和SigLip-400M视觉编码器训练，采用与VisCPM-Chat相同的训练流程训练，可在终端设备上部署并具备先进的多模态对话能力；[OmniLMM-13B](https://huggingface.co/openbmb/OmniLMM-12B/)为英文多模态模型，基于EVA02-5B和Zephyr-7B-β初始化训练，相比同规模其他模型在多个基准测试中具有领先性能。
 - **[2024/01/16]** 🎉 [VisCPM论文](https://arxiv.org/pdf/2308.12038.pdf)被**ICLR 2024**接收，并被选为**spotlight（top 5%）**！
 - **[2023/09/06]** 🔌 VisCPM-Chat API 发布！现在您可以直接通过API轻松地使用VisCPM-Chat模型了。查看[API使用指南](#API使用指南)以了解更多详情。
