@@ -467,17 +467,17 @@ CPM-Bee基座采用协议为[“通用模型许可协议-来源说明-宣传限�
 ## 引用
 如果我们的工作对你有帮助的话，请考虑引用以下论文
 ```bibtex
-@article{viscpm,
-    title={Large Multilingual Models Pivot Zero-Shot Multimodal Learning across Languages}, 
-    author={Jinyi Hu and Yuan Yao and Chongyi Wang and Shan Wang and Yinxu Pan and Qianyu Chen and Tianyu Yu and Hanghao Wu and Yue Zhao and Haoye Zhang and Xu Han and Yankai Lin and Jiao Xue and Dahai Li and Zhiyuan Liu and Maosong Sun},
-    journal={arXiv preprint arXiv:2308.12038},
-    year={2023}
+@article{VisCPM,
+  title={Large multilingual models pivot zero-shot multimodal learning across languages},
+  author={Hu, Jinyi and Yao, Yuan and Wang, Chongyi and Wang, Shan and Pan, Yinxu and Chen, Qianyu and Yu, Tianyu and Wu, Hanghao and Zhao, Yue and Zhang, Haoye and others},
+  journal={arXiv preprint arXiv:2308.12038},
+  year={2023}
 }
 
 @article{muffin,
-      title={Reformulating Vision-Language Foundation Models and Datasets Towards Universal Multimodal Assistants},
-      author={Tianyu Yu, Jinyi Hu, Yuan Yao, Haoye Zhang, Yue Zhao, Chongyi Wang, Shan Wang, Yinxv Pan, Jiao Xue, Dahai Li, Zhiyuan Liu, Hai-Tao Zheng, Maosong Sun},
-      journal={arXiv preprint arXiv:2310.00653},
-      year={2023}
+  title={Reformulating vision-language foundation models and datasets towards universal multimodal assistants},
+  author={Yu, Tianyu and Hu, Jinyi and Yao, Yuan and Zhang, Haoye and Zhao, Yue and Wang, Chongyi and Wang, Shan and Pan, Yinxv and Xue, Jiao and Li, Dahai and others},
+  journal={arXiv preprint arXiv:2310.00653},
+  year={2023}
 }
 ```
